@@ -1,5 +1,14 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    border: 0px;
+  }
 body{
     background-color:#33353c;
+    padding-left: 465px;
+    padding-right: 465px;
+    color: #F5F4EF;
 }
 
 .content{
@@ -18,3 +27,8 @@ body{
     --aug-inset-bg: #1B1C1E;
     --aug-inset-opacity: .85;
 }
+a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #8A5D43;
+  }
