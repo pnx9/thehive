@@ -9,6 +9,10 @@ body{
     padding-left: 465px;
     padding-right: 465px;
     color: #F5F4EF;
+    display: block;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .content{
