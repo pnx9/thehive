@@ -1,0 +1,20 @@
+body{
+    background-color:#33353c;
+}
+
+.content{
+    padding-left: 465px;
+    padding-right: 465px;
+    --aug-border: 5px;
+    --aug-border-bg: black;
+    --aug-border-opacity: 1;
+    --aug-b-width: 50%;
+    --aug-br: 40px;
+    --aug-tl: 40px;
+    --aug-bl: 40px;
+    --aug-r-height: 50%;
+    --aug-tr: 40px;
+    --aug-inset: 4px;
+    --aug-inset-bg: #1B1C1E;
+    --aug-inset-opacity: .85;
+}
