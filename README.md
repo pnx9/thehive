@@ -5,7 +5,7 @@ Made with ``` npm gh-pages ```
 
 
 * Pages are inserted relatively.
-* push new articles
-  ``` npm run deploy ```
+* push new articles,
+``` npm run deploy ```
 
 https://pnx9.github.io/thehive/
