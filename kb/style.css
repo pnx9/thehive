@@ -21,18 +21,18 @@ body{
     padding-right: 100px;
     margin-bottom: 20px;
     line-height: 25px;
-    --aug-border: 5px;
+    --aug-border-all: 5px;
     --aug-border-bg:#363C3F;
     --aug-border-opacity: .75;
-    --aug-b-width: 50%;
+    --aug-b-extend1: 50%;
     --aug-br: 40px;
     --aug-tl: 40px;
     --aug-bl: 40px;
-    --aug-r-height: 50%;
+    --aug-r-extend1: 50%;
     --aug-tr: 40px;
     --aug-inset: 4px;
-    --aug-inset-bg: #F5F4EF;
-    --aug-inset-opacity: .85;
+    --aug-inlay-bg: #F5F4EF;
+    --aug-inlay-opacity: .85;
 }
 .center {
     text-align: center;
