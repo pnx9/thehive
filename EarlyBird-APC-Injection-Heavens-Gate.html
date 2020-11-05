@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/augmented-ui@2/augmented-ui.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>👾 Quick look into EarlyBird APC-Injection | Heaven's gate and all the goodies</title>
+</head>
+<body>
+    <div class="thehive">
+    <main class="center">
+        <h1>
+          <span class="glitch" data-text="thehype_">
+            <a href="index.html">thehive_</a>
+          </span>
+        </h1>
+      </main>
+    </div>
+<div  class="content" data-augmented-ui="tl-clip bl-clip r-clip-y tr-clip b-clip-x br-clip both">
+    <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Quick look into EarlyBird APC-Injection | Heaven's gate and all the goodies</title><style>
+        /* webkit printing magic: print all background colors */
+        html {
+            -webkit-print-color-adjust: exact;
+        }
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+        
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        @media only screen {
+            body {
+                margin: 2em auto;
+                max-width: 900px;
+                color: rgb(55, 53, 47);
+            }
+        }
+        
+        body {
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        
+        a,
+        a.visited {
+            color: inherit;
+            text-decoration: underline;
+        }
+        
+        .pdf-relative-link-path {
+            font-size: 80%;
+            color: #444;
+        }
+        
+        h1,
+        h2,
+        h3 {
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 0.75em;
+        }
+        
+        h1 {
+            margin-top: 1.875rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 1.25rem;
+        }
+        
+        .source {
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 1.5em;
+            word-break: break-all;
+        }
+        
+        .callout {
+            border-radius: 3px;
+            padding: 1rem;
+        }
+        
+        figure {
+            margin: 1.25em 0;
+            page-break-inside: avoid;
+        }
+        
+        figcaption {
+            opacity: 0.5;
+            font-size: 85%;
+            margin-top: 0.5em;
+        }
+        
+        mark {
+            background-color: transparent;
+        }
+        
+        .indented {
+            padding-left: 1.5em;
+        }
+        
+        hr {
+            background: transparent;
+            display: block;
+            width: 100%;
+            height: 1px;
+            visibility: visible;
+            border: none;
+            border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        @media only print {
+            img {
+                max-height: 100vh;
+                object-fit: contain;
+            }
+        }
+        
+        @page {
+            margin: 1in;
+        }
+        
+        .collection-content {
+            font-size: 0.875rem;
+        }
+        
+        .column-list {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .column {
+            padding: 0 1em;
+        }
+        
+        .column:first-child {
+            padding-left: 0;
+        }
+        
+        .column:last-child {
+            padding-right: 0;
+        }
+        
+        .table_of_contents-item {
+            display: block;
+            font-size: 0.875rem;
+            line-height: 1.3;
+            padding: 0.125rem;
+        }
+        
+        .table_of_contents-indent-1 {
+            margin-left: 1.5rem;
+        }
+        
+        .table_of_contents-indent-2 {
+            margin-left: 3rem;
+        }
+        
+        .table_of_contents-indent-3 {
+            margin-left: 4.5rem;
+        }
+        
+        .table_of_contents-link {
+            text-decoration: none;
+            opacity: 0.7;
+            border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid rgba(55, 53, 47, 0.09);
+            border-collapse: collapse;
+        }
+        
+        table {
+            border-left: none;
+            border-right: none;
+        }
+        
+        th,
+        td {
+            font-weight: normal;
+            padding: 0.25em 0.5em;
+            line-height: 1.5;
+            min-height: 1.5em;
+            text-align: left;
+        }
+        
+        th {
+            color: rgba(55, 53, 47, 0.6);
+        }
+        
+        ol,
+        ul {
+            margin: 0;
+            margin-block-start: 0.6em;
+            margin-block-end: 0.6em;
+        }
+        
+        li > ol:first-child,
+        li > ul:first-child {
+            margin-block-start: 0.6em;
+        }
+        
+        ul > li {
+            list-style: disc;
+        }
+        
+        ul.to-do-list {
+            text-indent: -1.7em;
+        }
+        
+        ul.to-do-list > li {
+            list-style: none;
+        }
+        
+        .to-do-children-checked {
+            text-decoration: line-through;
+            opacity: 0.375;
+        }
+        
+        ul.toggle > li {
+            list-style: none;
+        }
+        
+        ul {
+            padding-inline-start: 1.7em;
+        }
+        
+        ul > li {
+            padding-left: 0.1em;
+        }
+        
+        ol {
+            padding-inline-start: 1.6em;
+        }
+        
+        ol > li {
+            padding-left: 0.2em;
+        }
+        
+        .mono ol {
+            padding-inline-start: 2em;
+        }
+        
+        .mono ol > li {
+            text-indent: -0.4em;
+        }
+        
+        .toggle {
+            padding-inline-start: 0em;
+            list-style-type: none;
+        }
+        
+        /* Indent toggle children */
+        .toggle > li > details {
+            padding-left: 1.7em;
+        }
+        
+        .toggle > li > details > summary {
+            margin-left: -1.1em;
+        }
+        
+        .selected-value {
+            display: inline-block;
+            padding: 0 0.5em;
+            background: rgba(206, 205, 202, 0.5);
+            border-radius: 3px;
+            margin-right: 0.5em;
+            margin-top: 0.3em;
+            margin-bottom: 0.3em;
+            white-space: nowrap;
+        }
+        
+        .collection-title {
+            display: inline-block;
+            margin-right: 1em;
+        }
+        
+        time {
+            opacity: 0.5;
+        }
+        
+        .icon {
+            display: inline-block;
+            max-width: 1.2em;
+            max-height: 1.2em;
+            text-decoration: none;
+            vertical-align: text-bottom;
+            margin-right: 0.5em;
+        }
+        
+        img.icon {
+            border-radius: 3px;
+        }
+        
+        .user-icon {
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 100%;
+            margin-right: 0.5rem;
+        }
+        
+        .user-icon-inner {
+            font-size: 0.8em;
+        }
+        
+        .text-icon {
+            border: 1px solid #000;
+            text-align: center;
+        }
+        
+        .page-cover-image {
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            height: 30vh;
+        }
+        
+        .page-header-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header-icon-with-cover {
+            margin-top: -0.72em;
+            margin-left: 0.07em;
+        }
+        
+        .page-header-icon img {
+            border-radius: 3px;
+        }
+        
+        .link-to-page {
+            margin: 1em 0;
+            padding: 0;
+            border: none;
+            font-weight: 500;
+        }
+        
+        p > .user {
+            opacity: 0.5;
+        }
+        
+        td > .user,
+        td > time {
+            white-space: nowrap;
+        }
+        
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            margin-right: 0.6em;
+            vertical-align: middle;
+        }
+        
+        p {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        .image {
+            border: none;
+            margin: 1.5em 0;
+            padding: 0;
+            border-radius: 0;
+            text-align: center;
+        }
+        
+        .code,
+        code {
+            background: rgba(135, 131, 120, 0.15);
+            border-radius: 3px;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-size: 85%;
+            tab-size: 2;
+        }
+        
+        code {
+            color: #eb5757;
+        }
+        
+        .code {
+            padding: 1.5em 1em;
+        }
+        
+        .code-wrap {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        
+        .code > code {
+            background: none;
+            padding: 0;
+            font-size: 100%;
+            color: inherit;
+        }
+        
+        blockquote {
+            font-size: 1.25em;
+            margin: 1em 0;
+            padding-left: 1em;
+            border-left: 3px solid rgb(55, 53, 47);
+        }
+        
+        .bookmark {
+            text-decoration: none;
+            max-height: 8em;
+            padding: 0;
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+        }
+        
+        .bookmark-title {
+            font-size: 0.85em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 1.75em;
+            white-space: nowrap;
+        }
+        
+        .bookmark-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .bookmark-info {
+            flex: 4 1 180px;
+            padding: 12px 14px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .bookmark-image {
+            width: 33%;
+            flex: 1 1 180px;
+            display: block;
+            position: relative;
+            object-fit: cover;
+            border-radius: 1px;
+        }
+        
+        .bookmark-description {
+            color: rgba(55, 53, 47, 0.6);
+            font-size: 0.75em;
+            overflow: hidden;
+            max-height: 4.5em;
+            word-break: break-word;
+        }
+        
+        .bookmark-href {
+            font-size: 0.75em;
+            margin-top: 0.25em;
+        }
+        
+        .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+        .code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+        .serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+        .mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+        .pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+        
+        .pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+        
+        .pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+        
+        .pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+        
+        .highlight-gray {
+            color: rgb(155,154,151);
+        }
+        .highlight-brown {
+            color: rgb(100,71,58);
+        }
+        .highlight-orange {
+            color: rgb(217,115,13);
+        }
+        .highlight-yellow {
+            color: rgb(223,171,1);
+        }
+        .highlight-teal {
+            color: rgb(15,123,108);
+        }
+        .highlight-blue {
+            color: rgb(11,110,153);
+        }
+        .highlight-purple {
+            color: rgb(105,64,165);
+        }
+        .highlight-pink {
+            color: rgb(173,26,114);
+        }
+        .highlight-red {
+            color: rgb(224,62,62);
+        }
+        .highlight-gray_background {
+            background: rgb(235,236,237);
+        }
+        .highlight-brown_background {
+            background: rgb(233,229,227);
+        }
+        .highlight-orange_background {
+            background: rgb(250,235,221);
+        }
+        .highlight-yellow_background {
+            background: rgb(251,243,219);
+        }
+        .highlight-teal_background {
+            background: rgb(221,237,234);
+        }
+        .highlight-blue_background {
+            background: rgb(221,235,241);
+        }
+        .highlight-purple_background {
+            background: rgb(234,228,242);
+        }
+        .highlight-pink_background {
+            background: rgb(244,223,235);
+        }
+        .highlight-red_background {
+            background: rgb(251,228,228);
+        }
+        .block-color-default {
+            color: inherit;
+            fill: inherit;
+        }
+        .block-color-gray {
+            color: rgba(55, 53, 47, 0.6);
+            fill: rgba(55, 53, 47, 0.6);
+        }
+        .block-color-brown {
+            color: rgb(100,71,58);
+            fill: rgb(100,71,58);
+        }
+        .block-color-orange {
+            color: rgb(217,115,13);
+            fill: rgb(217,115,13);
+        }
+        .block-color-yellow {
+            color: rgb(223,171,1);
+            fill: rgb(223,171,1);
+        }
+        .block-color-teal {
+            color: rgb(15,123,108);
+            fill: rgb(15,123,108);
+        }
+        .block-color-blue {
+            color: rgb(11,110,153);
+            fill: rgb(11,110,153);
+        }
+        .block-color-purple {
+            color: rgb(105,64,165);
+            fill: rgb(105,64,165);
+        }
+        .block-color-pink {
+            color: rgb(173,26,114);
+            fill: rgb(173,26,114);
+        }
+        .block-color-red {
+            color: rgb(224,62,62);
+            fill: rgb(224,62,62);
+        }
+        .block-color-gray_background {
+            background: rgb(235,236,237);
+        }
+        .block-color-brown_background {
+            background: rgb(233,229,227);
+        }
+        .block-color-orange_background {
+            background: rgb(250,235,221);
+        }
+        .block-color-yellow_background {
+            background: rgb(251,243,219);
+        }
+        .block-color-teal_background {
+            background: rgb(221,237,234);
+        }
+        .block-color-blue_background {
+            background: rgb(221,235,241);
+        }
+        .block-color-purple_background {
+            background: rgb(234,228,242);
+        }
+        .block-color-pink_background {
+            background: rgb(244,223,235);
+        }
+        .block-color-red_background {
+            background: rgb(251,228,228);
+        }
+        .select-value-color-default { background-color: rgba(206,205,202,0.5); }
+        .select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+        .select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+        .select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+        .select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+        .select-value-color-green { background-color: rgba(0,135,107,0.2); }
+        .select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+        .select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+        .select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+        .select-value-color-red { background-color: rgba(255,0,26,0.2); }
+        
+        .checkbox {
+            display: inline-flex;
+            vertical-align: text-bottom;
+            width: 16;
+            height: 16;
+            background-size: 16px;
+            margin-left: 2px;
+            margin-right: 5px;
+        }
+        
+        .checkbox-on {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+        }
+        
+        .checkbox-off {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+        }
+            
+        </style></head><body><article id="e3d7c1a7-f0a7-4870-8351-af315c9a9488" class="page sans"><header><h1 class="highlight-gray" style="text-align: center;">EarlyBird APC-Injection | Heaven's gate and all the goodies</h1></header><hr id="55ac69a3-22a3-489e-a489-f2d64d9c2acf"/><div class="page-body"><p id="72d1d0ed-54a5-40f3-bf85-407dfaf31456" class="">As a Practical Example for <strong>EarlyBird APC-Injection </strong>from <a href="https://pnx9-kb.xyz/rem-essentials-windows-malware-evasion-part2"><mark class="highlight-yellow"><strong>Malware Evasion Through Injection part2</strong></mark></a><mark class="highlight-yellow"><strong> </strong></mark>Episode of<mark class="highlight-yellow"><strong> </strong></mark><strong>REM-Essentials, </strong>I found this interesting sample that&#x27;s not only using <strong>EarlyBird APC Injection</strong>, but a whole lot of other tricks, since I found a niche in analyzing code, let&#x27;s dive into this mess.<strong> </strong></p><p id="767e1c21-5515-4caa-85d5-fe97b1768951" class="">
+</p><p id="07c388f8-92e7-4058-96e3-277f55391d95" class=""><strong>Sample sha256</strong>: 9173b5a1c2ca928dfa821fb1502470c7f13b66ac2a1638361fda141b4547b792</p><p id="d3dd99ae-77e6-44a5-b2b3-9b34d1f2ad49" class="">This Sample uses <strong>Early-Bird</strong> to inject malicious payload into a legitimate windows binary _ <code>svchost.exe</code> _ in this case.</p><hr id="1af8e66d-9ff4-4c80-a156-7feaa9949dfa"/><h3 id="fad85244-0078-4ffe-ad04-b3d9e5311fc7" class=""><mark class="highlight-red">Simple Threat Intel:</mark></h3><p id="33e7a425-c137-4c76-9ebe-92535546794d" class="">
+</p><p id="8ec5dd70-90d5-4189-9665-851569060bb0" class="">The sample starts by injecting into <code>explorer.exe</code>, it drops two binaries, one of the injected payloads in turn injects into <code>svchost.exe</code> .</p><figure id="f5af8086-9f5b-46e8-8fcf-3e5e18e5320d" class="image"><a href="images/Screen_Capture_select-area_20201027000711.png"><img style="width:685px" src="images/Screen_Capture_select-area_20201027000711.png"/></a></figure><p id="41032c92-9d93-4eb6-b02a-09df0dfc7a02" class=""><mark class="highlight-teal">// Since this sample is in fact a </mark><strong><mark class="highlight-teal">.NET</mark></strong><mark class="highlight-teal"> sample, we will quickly unpack it till we get our main dropper.</mark></p><p id="5b9a290e-cf49-4367-bb72-2a7b0217cf7c" class="">
+</p><hr id="112591c8-189e-402b-9c34-4b8726919d99"/><h3 id="7ed97323-711b-40cd-8be7-669dedd0f3eb" class=""><mark class="highlight-red">Quickly unpacking/ deobfuscating 1st stage payload:</mark></h3><p id="634d6d84-5e48-4d8b-abdc-4d6e4a59ad4b" class="">
+</p><p id="d94d12a5-71ef-4cf5-98ce-ae7fd4a00421" class=""><strong>1→</strong></p><p id="e220eb22-c10e-4e50-8a4f-ed999b7b6ca3" class="">Firing the Sample in <code>dnSpy</code> we find it&#x27;s real name: <code>phpv1ph20_cr.exe</code> , stepping into the <code>Main</code> &gt; <code>InitializeComponent()</code> which are just basic <strong>Methods</strong> for creating<strong> Applications </strong>in <strong>C# </strong></p><figure id="4e54d539-37c6-46af-b095-9432bd740419" class="image"><a href="images/Screen_Capture_select-area_20201027003403.png"><img style="width:690px" src="images/Screen_Capture_select-area_20201027003403.png"/></a></figure><p id="59276e10-2d72-496c-9349-50fb5ec1e29e" class="">
+</p><p id="750764c9-b3e9-4e6e-973a-de48fcc7c891" class="">inside <code>InitializeComponent()</code> we see basic layout manipulation methods, then some objects and functions with encrypted names, which in short does the following:</p><ul id="6818778e-beff-4ce4-a113-57034f339d24" class="bulleted-list"><li>Gets a <strong>.bitmap</strong> image from the resources that&#x27;s most likely is an encrypted executable. [1`]</li></ul><ul id="48824d80-f42d-4b71-8ff2-32243fdfd1f8" class="bulleted-list"><li>Gets another resource of size <strong>19bytes</strong>, which we can guess is a key. [1``]</li></ul><ul id="db3c2b72-1d64-4cd1-b77e-1cae94326c37" class="bulleted-list"><li>Saving the <strong>.bitmap</strong> image into a byte array, and passing the array along with the key into a function that returns a <code>stocuUXlBXJEyFZuoaR</code> object that loaded as Assembly and invoked[1```]</li></ul><p id="fc4e6529-8b19-4a79-869e-029b8c61ecc5" class="">
+</p><figure id="21333f39-7c15-4264-a127-6b0779a95a01" class="image"><a href="images/Screen_Capture_select-area_20201027003913.png"><img style="width:732px" src="images/Screen_Capture_select-area_20201027003913.png"/></a></figure><p id="1c68dea5-3796-49ca-b21a-53cee9afdede" class=""> </p><p id="58dbdcb0-c990-4b4f-9f19-d5ce73a176d7" class="">→ resources to load and decrypt.</p><figure id="1f8f7f71-0a9c-4cbd-b552-65fc3d716470" class="image"><a href="images/Screen_Capture_select-area_20201027015523.png"><img style="width:638px" src="images/Screen_Capture_select-area_20201027015523.png"/></a></figure><p id="ec8d9562-7bf1-4260-bf23-8cfb25ab75ff" class="">
+</p><p id="8dbf6b41-2b2b-4906-8304-9ac4a21d5f4d" class=""><strong>2→</strong></p><p id="b1c8b963-f8d8-47a6-81f0-76e32f59d654" class="">Setting breakpoints on each <code>Assembly.Load()</code> / <code>.Invoke()</code> and running the debugger[2`]. We hit the breakpoint before <code>Assembly.Load()</code> and with checking the <code>stocuUXlBXJEyFZuoaR</code> object we see an executable, that&#x27;s definitely the<strong> .bitmap</strong> image been decrypted[2``].</p><figure id="f3d38ae5-2da6-4069-b058-c7ef719de93c" class="image"><a href="images/Screen_Capture_select-area_20201027015753.png"><img style="width:600px" src="images/Screen_Capture_select-area_20201027015753.png"/></a></figure><p id="eec9516c-690c-4a5f-bef3-98491e96926f" class="">
+</p><p id="64732676-27e6-4215-82a2-a5d7f3b23131" class=""><strong>3→</strong></p><p id="ebf0b231-6e1f-443e-bb7e-5f9524750c62" class="">We will Step Through the <code>Assembly.Load()</code> and let the program load the assembly, Stepping Into <code>.Invoke()</code> and it&#x27;s relevant <code>InvokeMethodFast()</code> method, we find ourselves executing inside <code>Program()</code> function in <code>stub.exe</code>[3`] . Checking this function we see it performs some anti-analysis checks[3``] and in turn loads a resource and by checking the resources we find a <mark class="highlight-teal"><strong>MAIN.bin</strong></mark> binary file that&#x27;s <strong>41kb</strong>[3```], so we dump this out and jump to the next analysis step.</p><figure id="7c1eac93-a596-48b8-bfa2-ffad6fc318e3" class="image"><a href="images/Screen_Capture_select-area_20201027025258.png"><img style="width:905px" src="images/Screen_Capture_select-area_20201027025258.png"/></a></figure><hr id="a00eb420-9076-4c28-ac9c-0ef3b9bfdd81"/><p id="0ff9e4a2-c893-4402-8585-2bcf3559c250" class="">
+</p><h2 id="d8d47320-c472-45c4-862b-74990ff5464e" class=""><mark class="highlight-red">Analyzing MAIN.bin:</mark></h2><p id="e6ad2aa9-b2ae-4beb-bc0e-90494be837f0" class=""><mark class="highlight-teal">// The Threat Intel step gave us the information that the sample injects into </mark><mark class="highlight-red"><code>exporer.exe</code></mark><mark class="highlight-teal">, drops two </mark><mark class="highlight-teal"><strong>PE</strong></mark><mark class="highlight-teal">s into it, and the injected payload inside  </mark><mark class="highlight-red"><code>explorer.exe</code></mark><mark class="highlight-teal">  injects the final payload into </mark><mark class="highlight-red"><code>svchost.exe</code></mark><mark class="highlight-teal"> </mark></p><p id="64f339bc-d26b-472a-996b-e117b40ce445" class=""><strong>MAIN.bin: </strong>6ad3ca9bb4e9d96c2507934486c013c1f58c0030d503d3b10b58e5d23209429e</p><p id="555fc917-c284-43cf-9f03-5514cb0a092a" class="">
+</p><p id="13d314b0-0e99-481f-a823-71205c35eda3" class=""><strong>1→</strong></p><h3 id="8172d0ce-6674-4417-866e-70b086f70785" class=""><mark class="highlight-red"><strong>Basic Static Analysis:</strong></mark></h3><p id="d5838c9b-3ef7-45bf-994a-81c04b961682" class="">
+</p><p id="58d50c95-7222-4241-9c5f-0ee3d2adfe3a" class=""><mark class="highlight-teal"><strong>MAIN.bin</strong></mark> has sections with self-modifying code[1], two exports <em><mark class="highlight-teal">RemoteMain()</mark></em>, <mark class="highlight-teal"><em>TestSvchost() </em></mark>[1``] and loads of interesting strings[1```].</p><figure id="48066da3-cef1-4359-8f88-6e0a9ae3a293" class="image"><a href="images/Screen_Capture_select-area_20201029195256.png"><img style="width:689px" src="images/Screen_Capture_select-area_20201029195256.png"/></a></figure><pre id="2451cb19-e40e-4469-a707-51c19c6d0c1d" class="code"><code><strong>// [1```]</strong>
+
+<strong>// Heaven&#x27;s Gate?</strong>
+00000BAC  wow32_64
+00000C50  IsWow64Process
+
+00000C60  KERNEL32
+00000C6C  explorer.exe
+00000C7C  SeDebugPrivilege
+00000C90  SimpleMyMain
+00000CA0  CreateProcessInternalW
+00000CB8  kernel32
+00000CC4  Hello from EXPLORER
+00000D84  \\.\pipe\mynamedpipe
+00000D9C  RemoteMain
+00000DA8  TestSvchost
+00000E10  Global\%s%d
+00000E30  NtAllocateVirtualMemory
+00000E48  NtWriteVirtualMemory
+00000E60  RtlCreateUserThread
+
+<strong>// EARLYBIRD APC Injection</strong>
+00003E1A  NtQueueApcThread
+00003E2E  NtResumeThread
+
+<strong>// IoCs</strong>
+Unicode Strings:
+---------------------------------------------------------------------------
+00000A70  lfFilePath
+00000A88  Software\Microsoft\Notepad
+00000AC0  explorer.scr
+00000ADC  scr.lnk
+00000AEC  Explorer
+00000B00  Software\Microsoft\Windows\CurrentVersion\Run
+00000B5C  explorer.exe
+00000B78  Windows Explorer Command
+00000BB8  Mozilla/5.0 (Windows; U; MSIE 8.0; Windows NT 6.0; ru-RU)
+00000C34  POST
+00000CD6  RNumber
+00000CE8  Software\Microsoft\Modules
+00000D20  %s\%d
+00000D2C  NameHash
+00000D40  FileHash
+00000D54  Flags
+00000D60  Size
+00000D6C  Data
+00000D78  %s\%s
+00000DB8  http://46.105.143.221/next/version.php
+00000E1A  dntdll.dll</code></pre><hr id="03085804-a7f6-436c-b944-385a3673c5b1"/><p id="535ff59d-6510-4b63-8728-ebb0d1dbe576" class=""><strong>2→</strong></p><h3 id="954de7c4-8ba3-4b49-9c09-da909f574fd2" class=""><mark class="highlight-red"><strong>Debugging MAIN.bin:</strong></mark></h3><p id="b23208be-5172-4f43-8b7b-bf284e331e4b" class="">
+</p><p id="93593b0d-4561-47a9-b366-6499af5dd07c" class="">This sample is pretty tricky and with a mixture of injection techniques/ execution and anti-analysis tricks, I will set a simple flow of it&#x27;s execution and based on it we will debug through the sample with these major steps in mind.</p><pre id="f959ac6f-cda5-483d-aa84-1229d7e5248f" class="code"><code><mark class="highlight-blue"><strong>MAIN.bin:</strong></mark><mark class="highlight-blue">
+</mark><mark class="highlight-blue"><strong>sha256:</strong></mark> 6ad3ca9bb4e9d96c2507934486c013c1f58c0030d503d3b10b58e5d23209429e
+ <mark class="highlight-blue"> </mark><strong><mark class="highlight-blue">A]</mark></strong>  // drops a <strong>64bit</strong> (first) payload in it&#x27;s memory space through <mark class="highlight-teal">memcpy</mark>
+      // hollows <strong>wow32_64</strong> native image to contain another (second) 
+          // <strong>32bit</strong> payload via <mark class="highlight-teal">memcpy </mark>this payload is an a copy of the original
+          // dropper with a _ possible _ decrypted binary at offset [0x8000]
+ <mark class="highlight-blue"><strong>   </strong></mark>  // with <mark class="highlight-blue"><em><strong>WriteProcessMemory</strong></em></mark> it injects both payloads into explorer.exe
+ <mark class="highlight-blue"><strong>B]</strong></mark>   // execute the injected payload via a thread as an <strong>APC</strong> using heaven&#x27;s gate
+   <mark class="highlight-blue"><strong>explorer.exe:</strong></mark>
+       <strong> 56kb-32bit</strong> payload: 055c614c181237a4a64df6346b9631a394f134bf21964f46b5479e927ef31044
+       <strong> 32kb-64bit</strong> payload: 49c25a5b8413d98d77722b6fddbc2d9c15a9c7ca4e5aef6acd5d8fd6df1e81e4
+  <mark class="highlight-blue"><strong>C]</strong></mark>    // malicious thread injects into svchost.exe, executes payload as an APC.
+     <mark class="highlight-blue"> </mark><mark class="highlight-blue"><strong> svchost:</strong></mark>
+           <strong>56kb-32bit</strong> payload: 9a64c4f2e9c070a7b2593ad276c75aa65a74d4f90c64be60233e0636335c4cec
+             // connects to the internet, establishes persistence... etc
+             // drops two files in C:\\Users\xxx\Music\
+                <mark class="highlight-blue">  </mark><mark class="highlight-blue"><strong>explorer.scr: </strong></mark>6ad3ca9bb4e9d96c2507934486c013c1f58c0030d503d3b10b58e5d23209429e
+                 <mark class="highlight-blue"> </mark><mark class="highlight-blue"><strong>scr.lnk:</strong></mark><strong> </strong>20cc017c62b884b7f15ce889f93e24b86d7bd6f2ad03267966fdd373ac81724d</code></pre><p id="1b0afd60-8cbb-47ff-bfbb-cf0efb8720c1" class="">
+</p><p id="16a5e48e-0568-4db1-97f1-fbb4f9a91148" class=""><mark class="highlight-red"><strong>A]</strong></mark></p><p id="496ed663-5791-4af7-a9be-35d1e0fe379f" class=""><strong>1 →</strong></p><p id="276d8c3b-2077-467c-92de-f78d79f7835d" class="">After querying running processes with <mark class="highlight-blue"><em><strong>CreateToolhelp32Snapshot()</strong></em></mark>/ <mark class="highlight-blue"><em><strong>Process32First()</strong></em></mark>/ <mark class="highlight-blue"><em><strong>Process32Next()</strong></em></mark> and running the resulted process name <code>pe32.szExeFile</code> over some mangling, comparing it with this string <code>c48947ea</code> , the sample opens <code>explorer.exe</code> to obtain a handle to it.</p><figure id="d02da8b6-fe4b-48a3-80d6-0025bcf568df" class="image"><a href="images/Screen_Capture_select-area_20201029203514.png"><img style="width:808px" src="images/Screen_Capture_select-area_20201029203514.png"/></a></figure><p id="1599a0b5-9f79-45bd-94eb-5c5b2537eb3f" class="">
+</p><p id="6a9268f7-6e72-49f2-ad98-03968b85f6b2" class=""><strong>2 →</strong></p><p id="6fe45410-bdff-4289-86cd-cf2a23f1a6cc" class="">Through an interesting wrapper function, the sample figures out if it&#x27;s running under <strong>Wow64</strong> or not. It first loads the <mark class="highlight-blue"><em><strong>IsWow64Process()</strong></em></mark> address[2`] then executes it over it&#x27;s own context[2``]. </p><figure id="41936284-09fe-40b2-b210-9225395afbad" class="image"><a href="images/Screen_Capture_select-area_20201029211811.png"><img style="width:720px" src="images/Screen_Capture_select-area_20201029211811.png"/></a></figure><p id="0856b331-2e82-4656-9ce6-ec8ef4333fcc" class="">
+</p><p id="03bf1ab9-43fc-4845-9103-856d4a2c6135" class="">passing the <strong><em>hProcess</em></strong><em> </em>of <code>explorer.exe</code>, this wrapper function is executed again[2```], with return value of <strong>ZERO</strong> meaning the specified process _ <em>target process </em><code><em>explorer.exe</em></code><em> _ </em>is in fact a <strong>64bit </strong>process. that&#x27;s a good guess that maybe the sample would execute the payload through <strong>Heaven&#x27;s Gate </strong>which we will get to later.</p><figure id="7603c79f-9d32-492f-b721-ded258444cf0" class="image"><a href="images/Screen_Capture_select-area_20201029214054.png"><img style="width:709px" src="images/Screen_Capture_select-area_20201029214054.png"/></a></figure><p id="f3606941-3d82-4f0f-9064-2fd164579948" class="">
+</p><p id="0025cf61-058d-4b2f-820d-070bc2a0f251" class=""><strong>3 → </strong></p><p id="ad01e892-48bd-4568-8aa2-a2df3777898b" class="">The sample then allocates memory at<em> [0x000F0000] </em>in it&#x27;s own context[3`], then through another wrapper function, an address inside it&#x27;s memory space is passed, so we might expect a write operation next[3``].</p><figure id="552301a9-fdef-4f2e-9fc5-5a85c7069cfc" class="image"><a href="images/Screen_Capture_select-area_20201029215744.png"><img style="width:777px" src="images/Screen_Capture_select-area_20201029215744.png"/></a></figure><p id="49b576db-8b5b-4052-92d9-c44d8fc4c53a" class="">
+</p><p id="84acd6b4-8a32-4b06-be53-27c55bb2db7b" class="">the memory at<em> [0x000F0000] </em>is populated in chunks through a typical<em><mark class="highlight-teal"> memcpy </mark></em>with a binary in the sample&#x27;s context at<em> [0x013B8000], </em>Next it parses the dropped payload&#x27;s PE header to check if it&#x27;s <strong>32bit</strong>/ <strong>64bit</strong> binary.</p><p id="9686c89d-0ccf-49f1-92e9-fc2a67a553bf" class=""><strong>dump1: </strong>47092f385933db565b2172cf767c13eaae2724e70e7a96f014a42837fb2a2fa6</p><figure id="32993f42-e8e9-4a80-b269-1cc9611a674e" class="image"><a href="images/Screen_Capture_select-area_20201029221344.png"><img style="width:736px" src="images/Screen_Capture_select-area_20201029221344.png"/></a></figure><p id="0539df88-d365-4412-97d4-dc447b75b635" class="">
+</p><p id="d2bef641-9611-4141-99b5-c3b8bce2cb90" class="">After populating the allocated memory with the interesting dump the sample will virtually protect it, at this point we would save it and resolve the imports by fixing mapped offsets.</p><p id="4c50542c-13f5-428d-bf0b-029ad8e145ae" class="">quickly analyzing the dumped binary we see it&#x27;s <strong>64-bit code</strong> with the name <em>[dll.bin]</em>, with 6 exports and self-modifying sections. </p><figure id="ed69de93-370e-4841-8849-187d2ba9902f" class="image"><a href="images/Screen_Capture_select-area_20201029223652.png"><img style="width:1019px" src="images/Screen_Capture_select-area_20201029223652.png"/></a></figure><p id="9283578a-afe2-4587-b4d0-865d8ac0b749" class="">
+</p><p id="f3c2a0c9-b7ae-4f3e-813f-3caf121c73c1" class="">
+</p><p id="a9454b66-40aa-4231-8a94-73b10d87b301" class=""><strong>4 →</strong></p><p id="009275e8-eb3f-4de0-9808-3015de6df50f" class="">For the next payload to be dropped, the sample creates a named file mapping object with <mark class="highlight-blue"><em><strong>CreateFileMappingA()</strong></em></mark> with the name <code>wow32_64</code> which is a native windows image, yet it passes no <strong>hFile</strong> to the file mapping object, but must pass a <strong>MaxSizeHigh</strong> which interestingly enough was <em>[</em><strong><em>DBDC</em></strong><em> → </em><strong><em>56kb</em></strong><em>]</em> the sample&#x27;s own image size, the name of the file mapping object underlying section would be the same <code>wow32_64</code>. and a section is created. </p><pre id="1872a2c8-9bce-44be-a183-f15dc78317cc" class="code"><code>CreateFileMapping( ..., DBDC, &amp;&quot;<mark class="highlight-yellow">wow32_64</mark>&quot;);
+      CreateFileMappingNumaW();
+                 NtCreateSection( ..., DBDC, ...); </code></pre><figure id="ee1a03fe-8446-4eb0-b5da-9cee3f58d0fb" class="image"><a href="images/Screen_Capture_select-area_20201104162959.png"><img style="width:469px" src="images/Screen_Capture_select-area_20201104162959.png"/></a></figure><p id="1e7516ed-ceec-4eea-acad-e6dfd183095b" class="">
+</p><p id="b0502087-ef0d-4fd7-a0b5-b4b6793ea750" class="">next the file mapping object along with the created section is mapped in the sample&#x27;s context by a call to <mark class="highlight-blue"><em><strong>MapViewOfFile()</strong></em></mark> that in turn calls <mark class="highlight-blue"><em><strong>NtMapViewOfSection()</strong></em></mark><em><strong>,</strong></em> we end up with a mapped empty <strong>56kb</strong> section in the sample&#x27;s process memory.</p><figure id="4b2e7f9d-b968-4cf0-b960-58a0c23f4700" class="image"><a href="images/Screen_Capture_select-area_20201030020849.png"><img style="width:860px" src="images/Screen_Capture_select-area_20201030020849.png"/></a></figure><p id="cce71740-8b8c-4cc2-9c9c-225964b3ea5b" class="">
+</p><p id="0840d383-76f6-4175-833c-89ea6e267f9a" class="">next the mapped memory block <em>[0x200000]</em> is allocated using <mark class="highlight-teal">memcpy</mark> again, with the sample&#x27;s binary at <em>[0x13D0000]</em> size of [<strong>DBDC</strong> → <strong>56kb</strong>].</p><p id="3bbf6950-ea7a-45be-92e8-0236cce379c7" class=""><mark class="highlight-gray"><em>[ if you happen to notice the offsets different from the past steps, and the next steps, it&#x27;s because I reloaded the sample a couple of times 🙋🏻‍♀️ ] </em></mark></p><figure id="1db66159-2679-4d9f-b0fa-c4012b23836c" class="image"><a href="images/Screen_Capture_select-area_20201030021351.png"><img style="width:603px" src="images/Screen_Capture_select-area_20201030021351.png"/></a></figure><p id="f7600647-5d23-4fe9-801e-14e1a6bfec77" class="">
+</p><p id="90e9fba1-9944-4785-9bd6-60143e29f1f6" class="">The sample then checks the written binary if it&#x27;s <strong>64bit</strong> or<strong> 32bit</strong> by parsing the PE header&#x27;s <strong>IMAGE_FILE_HEADER</strong> Machine value [<strong>14C</strong> / <strong>8664</strong>] </p><figure id="4cfba232-362c-4482-8044-4315c5dd2023" class="image"><a href="images/Screen_Capture_select-area_20201030022845.png"><img style="width:466px" src="images/Screen_Capture_select-area_20201030022845.png"/></a></figure><p id="edebb40b-ad89-4440-93a2-de09e82c5bd6" class="">
+</p><p id="fa656b56-9084-4802-92c4-2d7b65011867" class="">The file mapping object is then unmapped along with the underlying section through <mark class="highlight-blue"><em><strong>NtUnmapViewOfFile()</strong></em></mark> → <mark class="highlight-blue"><em><strong>ZwUnmapViewOfSection()</strong></em></mark></p><figure id="cc13b07e-8559-41ab-99c0-4ae8a94afa38" class="image"><a href="images/Screen_Capture_select-area_20201104164505.png"><img style="width:636px" src="images/Screen_Capture_select-area_20201104164505.png"/></a></figure><p id="bbc734d0-79cd-407a-947e-b15924dacd2f" class="">
+</p><p id="92df8773-e6ee-4dfc-9979-d20a31543e08" class=""><strong>5 →</strong></p><p id="961388fe-1201-4e88-8416-05a3d4b4e625" class="">Quickly analyzing the mapped memory block we see it&#x27;s identical to the sample we are running <code>MAIN.bin</code> yet it actually contains another executable at offset <em>[0x8000] </em>that is the first dump we dumped at <strong>step3</strong>, with old school binary diffing, we see that this version of <code>MAIN.bin</code> has unpacked what seemed to be an encrypted binary from the sample we&#x27;re running to a copy of itself, maybe explaining the different <strong>PE</strong> parsing checks over that mapped memory region.</p><p id="8d340b88-6db2-4dc5-8a87-b721c5c8d9dc" class=""><strong>dump2: </strong>c6a7567623a6630866337231e6e9601ae6c7560820ba4f97efe8fa9d2b200f9c</p><figure id="ab78c18b-a1b1-4ead-83f4-1672e69c234e" class="image"><a href="images/Screen_Capture_select-area_20201105205335.png"><img style="width:668px" src="images/Screen_Capture_select-area_20201105205335.png"/></a></figure><figure id="5c4003d0-b228-45fb-b869-b204b4d4aba0" class="image"><a href="images/Screen_Capture_select-area_20201105205401.png"><img style="width:676px" src="images/Screen_Capture_select-area_20201105205401.png"/></a></figure><p id="3c9f6932-b051-42a3-a5fa-5df1750a8089" class="">
+</p><p id="dfddafe4-9b8c-46a7-a623-bb4ef98cc0d8" class=""><mark class="highlight-red"><strong>B]</strong></mark></p><p id="2a595e3f-e862-4534-bb33-cc03d499a782" class=""><strong>6 → </strong></p><p id="74c9e5cc-9aab-4556-b1d9-0a9a32d51cae" class="">The Injection into <code>explorer.exe</code> involves `Heaven&#x27;s Gate` which is a technique to inject into <strong>64bit</strong> processes from <strong>32bit</strong> payloads, this was clearly obvious in this sample as it made couple of <mark class="highlight-blue"><em><strong>IsWow64Process()</strong></em></mark> checks over itself and the opened process <code>explorer.exe</code> .</p><p id="6fbb3508-64f9-4c3e-b3ac-683bb409cc7c" class="">Since we didn&#x27;t go this far to only get this far, let&#x27;s talk a bit about Heaven&#x27;s Gate explaining how it&#x27;s done in this sample.</p><p id="894fa605-452e-498f-81f5-ce66760b1abb" class="">The Sample starts by figuring out it&#x27;s environment, if it&#x27;s running on a <strong>32bit </strong>or <strong>64bit</strong> system, the loader itself is <strong>32bit</strong> running under <strong>Wow64</strong>, again <strong>Wow64</strong> is considered a sandbox/interface to run <strong>32bit </strong>code inside <strong>64bit</strong> system without modifying the<strong> 32bit </strong>code. for every process/ application there is a <strong>SysWow64</strong> version of it. </p><figure id="6227d55b-40d4-467f-998d-224816644e87" class="image"><a href="images/Screen_Capture_select-area_20201103153458.png"><img style="width:646px" src="images/Screen_Capture_select-area_20201103153458.png"/></a><figcaption>as confusing as it looks, all 32bit version of windows DLLs and binaries lay in <em><strong>SysWow64 </strong></em>folder and the 64bit version of it is in <em><strong>System32 </strong></em>folder.</figcaption></figure><p id="c135e493-2a96-4c6f-855a-a135100399fc" class="">
+</p><p id="f2328e4b-401c-48a7-8684-1c6793979836" class="">In <strong>Step2</strong>, the Sample figures out the environment it&#x27;s running on [<strong>Wow64</strong> → payload is <strong>32bit</strong>] and the target process [<code>explorer.exe</code> → <strong>64bit </strong>process], so then it would literally tunnel <strong>32bit</strong> code to be executed in <strong>64bit</strong> process as we will see next to allocate a block of memory, drop a payload inside it and pass execution to the dropped payload inside the injected target <strong>64bit</strong> <code>explorer.exe</code> process.</p><p id="87194307-ac95-4041-ba59-ba10cdd529dd" class="">
+</p><p id="f251a2fb-92c4-4a56-9c79-585473b3c2d0" class="">In order to access the <strong>64bit</strong> environment of a process from a <strong>32bit </strong>payload, the sample needs to use the <strong>64bit</strong> version of <strong>DLL</strong>s and functions and the appropriate code segment selector, for both <strong>32bit</strong> code and <strong>64bit</strong> code there are two different segment selectors [<strong>0x23</strong> for <strong>32bit</strong> code/ <strong>0x33</strong> for <strong>64bit</strong> code]. </p><p id="d249a75d-2a6b-409e-9b0f-f7434f284cd6" class="">This process happen as follows:</p><pre id="2de62eef-3947-4c51-943e-d8fb5ed93003" class="code"><code><mark class="highlight-gray">// obtain handle to </mark><mark class="highlight-gray"><strong>64bit</strong></mark><mark class="highlight-gray"> DLLs/Functions
+// implement the desired function
+// push 0x33 segment selector
+// push the address of code to be executed
+// </mark><mark class="highlight-gray"><strong>call</strong></mark><mark class="highlight-gray"> RETF: ret far that allows specifying an address to return to 
+// + the code segment selector
+// i.e. [CALL 0x33:payload.xxxxx]</mark>
+.
+.
+.
+<mark class="highlight-red"><strong>push</strong></mark> 33
+<mark class="highlight-red"><strong>call</strong></mark> payload.xxxxx
+<mark class="highlight-red"><strong>add</strong></mark> DWORD PTR ss:[esp], 5
+<mark class="highlight-red"><strong>ret far</strong></mark></code></pre><p id="b4d5fc91-9e93-4b68-9375-e1ec173d334d" class="">
+</p><p id="2519f14e-f8d7-4a8f-8d10-c8fceb7943bc" class="">To witness this happen, we will debug <code>explorer.exe</code> in a <strong>64bit </strong>debugger, and as a starter we will set a breakpoint on <mark class="highlight-blue"><strong><em>NtTestAlert() </em></strong></mark>to catch if the injected payload is executed as an <strong>APC</strong>:</p><p id="70415764-e235-47ef-ad28-bcbb150b5187" class="">
+</p><p id="0df6741a-cceb-4a55-929c-886f723fa91c" class="">Execution flow for injecting into <code>explorer.exe</code> :</p><figure id="3262f095-65c2-46aa-b6bd-70e526633d01" class="image"><a href="images/Screen_Capture_select-area_20201103201749.png"><img style="width:588px" src="images/Screen_Capture_select-area_20201103201749.png"/></a></figure><p id="6b1f2e85-9673-4c1e-84ee-e13bf73a0afc" class=""><strong>6` → </strong></p><p id="b8160bb1-d21c-4a48-a04d-5cec9d3d300b" class=""><strong>A] </strong>Allocate memory inside <code>explorer.exe</code></p><p id="ce1a764e-542d-4f95-aad4-7451a3ab6bc0" class=""><strong>B] </strong>Write payload inside the allocated memory block at <mark class="highlight-teal"><em>&amp;allocated_mem</em></mark></p><figure id="7b6ec3dc-708c-4f03-8aa2-a0882428e424" class="image"><a href="images/Screen_Capture_select-area_20201103162100.png"><img style="width:1237px" src="images/Screen_Capture_select-area_20201103162100.png"/></a></figure><figure id="9ccecd8a-f996-4498-a105-33fae6c2ea77" class="image"><a href="images/Screen_Capture_select-area_20201103155827.png"><img style="width:936px" src="images/Screen_Capture_select-area_20201103155827.png"/></a></figure><p id="59cd1d6b-d34f-4f58-8121-8646e5907920" class="">
+</p><p id="ca0ebf23-d581-4d54-b80b-48478b9f782a" class=""><strong>C] </strong>Pass execution to payload inside <code>explorer.exe</code> with <mark class="highlight-blue"><em><strong>RtlCreateUserThread() </strong></em></mark>specifying the <em><strong>StartAddress</strong></em> of the created thread[C`], which if we jumped to inside the injected payload in <code>explorer.exe</code> we&#x27;d find another jump to a function in the payload[C``].</p><figure id="ee47898c-62e4-425e-92f6-9f0eb50652a8" class="image"><a href="images/Screen_Capture_select-area_20201103185547.png"><img style="width:1134px" src="images/Screen_Capture_select-area_20201103185547.png"/></a></figure><figure id="b8d9538b-e20a-4a19-9958-494b0677af42" class="image"><a href="images/Screen_Capture_select-area_20201103190218.png"><img style="width:759px" src="images/Screen_Capture_select-area_20201103190218.png"/></a></figure><p id="66fb80de-2822-4b06-8923-903169ae6df0" class="">
+</p><p id="a113ccea-21bb-444a-9598-4f1c2552621d" class=""><strong>7 →</strong></p><p id="5fdd1ed0-26bb-4c6e-b4a7-b0ab34111e18" class="">Now we get to the fun part where the main process _ dropper<em>&#x27;s process _ </em>passes execution to the payload inside <code>explorer.exe</code> and we&#x27;re left with a dropped payload inside a crucial process like <code>explorer.exe</code>, things will get messy because we are debugging a process that&#x27;s highly expected to have interrupts, so events outside debugging the intended payload will cause us mega headaches.</p><p id="892d5458-d5b5-480b-90fb-95dea77b9c3d" class="">
+</p><p id="955ae870-7304-47b9-8cce-d6699f8cb779" class="">Once executing the <mark class="highlight-blue"><em><strong>RtlCreateUserThread()</strong></em></mark> call, the sample&#x27;s process exits and we hit <mark class="highlight-blue"><em><strong>NtTestAlert() </strong></em></mark>breakpoint[7`] in the debugged <code>explorer.exe</code> that let&#x27;s our payload _ <em>that is a</em> <strong><em>queued APC</em></strong><em> </em>_ execute, which is in fact the location specified to jump at for the created thread[7``].</p><figure id="294eeff6-7702-47d3-94b5-301ce19cd2d4" class="image"><a href="images/Screen_Capture_select-area_20201103185908.png"><img style="width:1100px" src="images/Screen_Capture_select-area_20201103185908.png"/></a></figure><p id="b123a5f8-1d32-4922-9a2d-f789b264e103" class="">
+</p><p id="da608004-d63f-451e-9167-61bc1e2eee16" class=""><strong>8 →</strong></p><p id="11ed4982-6532-4c2f-a51a-03dc9a39fe94" class="">Now we&#x27;re executing from the injected payload inside <code>explorer.exe</code> and since we&#x27;re debugging the process, the only active thread now is the malicious thread, so right now anything else depends on <code>explorer.exe</code> freezes since we&#x27;re debugging it.</p><figure id="335da1a1-40fd-471b-b074-fa2c8a12a7a4" class="image"><a href="images/Screen_Capture_select-area_20201103191425.png"><img style="width:688px" src="images/Screen_Capture_select-area_20201103191425.png"/></a><figcaption>thread&#x27;s offset at 0x2BD0000 → payload&#x27;s address</figcaption></figure><p id="250670a5-bac2-47b8-8e1f-b72d919fa10c" class="">
+</p><p id="b3087d7b-000f-49bb-b231-63dd6b92e4b4" class="">Viewing the strings inside the injected payload, we put breakpoints on interesting strings, we also see <code>wow32_64</code> the same windows native image the original dropper used to write the second payload into.</p><figure id="e5c577ea-bde2-49d0-972f-a28fe9eae337" class="image"><a href="images/Screen_Capture_select-area_20201103190703.png"><img style="width:792px" src="images/Screen_Capture_select-area_20201103190703.png"/></a></figure><p id="58e8e882-2fb0-41b3-b985-844fca552611" class="">
+</p><p id="c3806a4e-93e2-417a-9309-e63f66bce11b" class=""><mark class="highlight-red"><strong>C]</strong></mark></p><p id="52728098-e947-42f5-bd0c-3da229282733" class=""><strong>9 →</strong></p><p id="66fcc61a-2978-4161-be4e-7864fafa7a39" class="">Following execution inside the dropped payload. we see it parses the PE header of the injected payload, resolves some <strong>API</strong>s to use, next it constructs the path to <strong>32bit</strong> version of <code>svchost.exe</code></p><p id="6920ff04-72fd-4efb-a6f0-34db9dbfef78" class="">inside <strong>sysWow64</strong> → <code>C:\\windows\syswow64\\svchost.exe</code> </p><figure id="d350b380-bc58-43f2-aeba-7ea9d5153c55" class="image"><a href="images/Screen_Capture_select-area_20201103191058.png"><img style="width:1002px" src="images/Screen_Capture_select-area_20201103191058.png"/></a></figure><p id="2df0ed38-a5e9-4782-b115-4e9ba528364a" class="">
+</p><p id="bf549bfb-e2df-4c01-a58b-c8df7f589dcd" class="">Next the payload creates the <strong>32bit</strong> <code>svchost.exe</code> process.</p><figure id="7bc5395d-5955-4fe1-a794-308f81a039e2" class="image"><a href="images/Screen_Capture_select-area_20201103191140.png"><img style="width:871px" src="images/Screen_Capture_select-area_20201103191140.png"/></a></figure><p id="8a588d03-ad45-4d36-919e-d45d8bf71b92" class="">right now, we would set breakpoints on <mark class="highlight-blue"><em><strong>CreateProcessInternalW(), NtResumeThread(), RtlCreateUserThread(), NtQueueApcThread()</strong></em></mark>. </p><p id="3e79d198-96b2-48ca-b7cc-770dc84fd9d3" class="">
+</p><p id="f434e7a8-350c-422f-9e2e-e4b9168dd908" class=""><strong>10 →</strong></p><p id="0bb213c8-7504-4cc9-ae3d-45bc9fb92a84" class="">On run we hit <mark class="highlight-blue"><em><strong>CreateProcessInternalW()</strong></em></mark> breakpoint with the path to <strong>32bit</strong> <code>svchost.exe</code>, creating the process in a suspended state.</p><figure id="b7f3b114-982f-46c4-9919-36b72d67e958" class="image"><a href="images/Screen_Capture_select-area_20201103191212.png"><img style="width:804px" src="images/Screen_Capture_select-area_20201103191212.png"/></a></figure><figure id="8583c19b-7eb3-412f-8d4c-27473b196abe" class="image"><a href="images/Screen_Capture_select-area_20201103180732.png"><img style="width:464px" src="images/Screen_Capture_select-area_20201103180732.png"/></a></figure><p id="5b116b63-bdd7-40d8-9308-91751d0ba16a" class="">
+</p><p id="bbfd7ae2-6a7b-4f1e-8778-c3991cc60f7c" class="">
+</p><p id="e8be441b-e5b3-4008-84b3-e7afb7375830" class="">The payload then tries to allocate memory inside the spawned <code>svchost.exe</code> with different calls to <mark class="highlight-blue"><em><strong>VirtualAllocEx()</strong></em></mark><em><strong>/ </strong></em><mark class="highlight-blue"><em><strong>WriteProcessMemory() </strong></em></mark>to eventually drop the final payload.</p><p id="a38e96eb-f3ca-4f0a-95c2-947f1087ce8c" class="">Confusingly enough the sample just stops there, the malicious thread inside <code>explorer.exe</code> exits leaving a suspended unmodified <code>svchost.exe</code>, so I guess the injection into <code>svchost.exe</code> involves some anti-analysis checks beforehand.</p><figure id="3d7b672e-cdc3-456d-9eeb-f5ff44f2e97e" class="image"><a href="images/Screen_Capture_select-area_20201103192223.png"><img style="width:869px" src="images/Screen_Capture_select-area_20201103192223.png"/></a></figure><p id="bf3102e9-b819-497a-a1a2-0345b157a5df" class="">
+</p><p id="629ec8ae-499f-4ecf-908f-04c9f9376b6b" class="">We should expect <code>svchost.exe</code> to be injected with the final payload, with the main thread executed as an <strong>APC, </strong>dropping two files on disk.</p><figure id="d2c9abfa-91f7-4db4-90cf-32175b40b496" class="image"><a href="images/Screen_Capture_select-area_20201104005410.png"><img style="width:622px" src="images/Screen_Capture_select-area_20201104005410.png"/></a></figure><figure id="781bc879-d430-4e00-9abb-d803c98d6038" class="image"><a href="images/Screen_Capture_select-area_20201104005335.png"><img style="width:456px" src="images/Screen_Capture_select-area_20201104005335.png"/></a><figcaption>thread&#x27;s offset at 0xC0000 → final payload&#x27;s address</figcaption></figure><figure id="363842e3-7ae2-4d79-ac63-8af75a198c9b" class="image"><a href="images/Screen_Capture_select-area_20201105201423.png"><img style="width:510px" src="images/Screen_Capture_select-area_20201105201423.png"/></a></figure><p id="76642710-5818-4fa8-b850-a7ec9c3c9e95" class="">
+</p><hr id="89623373-730a-4033-b5ca-f740675b814c"/><p id="101986b1-efcb-4ede-b8c4-961980eec5b1" class="">Interestingly enough while debugging I opened <code>Process Hacker</code> under the infected <code>explorer.exe</code> _ <em>that Iam still debugging</em> _ and I suddenly hit <mark class="highlight-blue"><em><strong>NtQueueApcThread() </strong></em></mark>breakpoint in the payload, and I end up with a trojaned <code>Process Hacker</code> 🤔🤔🤔</p><p id="032da229-93e9-43f1-b2a7-c3f881e76423" class="">Yet it was injected by the first payload [<strong>64bit</strong> payload] that&#x27;s supposedly will do the same thing the dropper did?? I really have no idea what&#x27;s happening here</p><figure id="d39cc1fd-d223-4137-af8d-1de639fed6ba" class="image"><a href="images/Screen_Capture_select-area_20201101173017.png"><img style="width:782px" src="images/Screen_Capture_select-area_20201101173017.png"/></a></figure><p id="546c526e-5dfe-4641-9c3a-c66ec6902d87" class="">
+</p><p id="6f6e1c62-eff8-48da-b0da-850b1c5848a4" class="">Yet from analyzing the dropped payloads&#x27; assembly we find both main exports are called via <mark class="highlight-blue"><em><strong>NtQueueApcThread()</strong></em></mark><em><strong>/ </strong></em><mark class="highlight-blue"><em><strong>NtResumethread()</strong></em></mark>, though we couldn&#x27;t catch the <strong>APC</strong> into <code>svchost.exe</code>, we can quite understand how it happened. </p><figure id="80fbe9ac-7209-4ed2-aa60-0bca70df8a91" class="image"><a href="images/Screen_Capture_select-area_20201105194440.png"><img style="width:806px" src="images/Screen_Capture_select-area_20201105194440.png"/></a></figure><hr id="e5ef41a0-111a-43d0-9e49-685a1bfcfab0"/><p id="6ee0b433-81df-4ef0-9a58-a9965af00420" class="">
+</p><p id="387d8234-0dec-4330-b9f7-754b9f9517bc" class="">For a closer look into the <strong>EarlyBird-APC Injection</strong> and how it&#x27;s done over the resuming of a newly created/ suspended thread, <strong>CyberBit</strong> has patched the same Sample, to reproduce the <strong>EarlyBird-APC Injection</strong> in a simple way to catch it on the other end _ <em><code>svchost.exe</code></em> _ , Here is the full synopsis of the technique: </p><p id="02b7b7ba-808b-4616-8ce1-5b940dffdddb" class=""><a href="https://www.cyberbit.com/blog/endpoint-security/new-early-bird-code-injection-technique-discovered/">https://www.cyberbit.com/blog/endpoint-security/new-early-bird-code-injection-technique-discovered/</a></p><hr id="48989463-59f5-491a-b89c-96f74bb390c8"/><p id="53bfcae4-72c1-4600-9f32-1c2c76d7ec8a" class="">
+</p><p id="2b3038f7-3c3a-4e4b-be89-0e9c688a1091" class="" style="text-align: center;"><strong><mark class="highlight-gray">Good Hunt!.. and later with another Sample. 👾👾</mark></strong></p><p id="9fda125c-144d-425c-be02-69dfac8b8b14" class="">
+</p></div></article></body></html>
+</div>
+</body>
+</html>
