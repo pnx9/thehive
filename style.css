@@ -13,7 +13,18 @@ body{
     margin-right: auto;
     overflow: auto;
 }
+#infocard {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-left: 20px;
+  font-weight: bold;
+  color:  rgb(173,26,114);
+  opacity: .8;
+  font-family: 'Press Start 2P', cursive;
 
+
+
+}
 .content{
     display: block;
     max-width: 1000px;
@@ -37,7 +48,7 @@ body{
     --aug-tr: 40px;
     --aug-inset: 4px;
     --aug-inlay-bg: #F5F4EF;
-    --aug-inlay-opacity: .85;
+    --aug-inlay-opacity: .95;
 }
 .center {
     text-align: center;
