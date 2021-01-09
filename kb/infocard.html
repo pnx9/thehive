@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/augmented-ui@2/augmented-ui.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title> 【 Ｓａｉｋō 】</title>
+</head>
+<body>
+  <div id="wrapper">
+  <div  id="main" class="content" data-augmented-ui="tl-clip bl-clip l-clip-y tr-clip t-clip-x br-clip both">
+    <div id="inner">
+    <div class="logo-profile">
+      <img class="profile" src="images/cat.jpg">
+      <p>::𝓢𝓪𝓲𝓴ō::</p>
+      <strong>[ thehive_ ]</strong>
+      <!-- Sig -->
+    </div>
+    <div class="contacts">
+      <hr id="divider">
+      <!-- Contacts -->
+      <div class="A">
+      <div class="contactA">
+        <a class="contentA" href="https://twitter.com/ghostinthehive" target="_blank"  
+        data-testid="LinkButton" display="inline-flex" 
+        font-family="inherit" font-weight="inherit" font-size="inherit" height="auto">
+        <img src="twitter.svg" width="22" height="22"><strong> Twitter</strong>
+        </a>
+      </div>
+    </div>
+
+    <div class="B">
+      <div class="contactB">
+        <a class="contentB" href="https://www.linkedin.com/in/sam-muhammad-557653197/" target="_blank"  
+        data-testid="LinkButton" display="inline-flex" 
+        font-family="inherit" font-weight="inherit" font-size="inherit" height="auto">
+        <img src="images/linkedin.svg" width="22" height="22"><strong>LinkedIn</strong>
+        </a>
+      </div>
+    </div>
+
+    <div class="C">
+      <div class="contactC">
+        <a class="contentC" href="https://thehive-kb.xyz/" target="_blank"  
+        data-testid="LinkButton" display="inline-flex" 
+        font-family="inherit" font-weight="inherit" font-size="inherit" height="auto">
+        <img src="images/alien.svg" width="22" height="22"><strong>Knowledge Base [BLOG]</strong>
+        </a>
+      </div>
+    </div>
+
+    <div class="D">
+      <div class="contactD">
+        <a class="contentD" href="https://pnx9.github.io/thehive/index.html" target="_blank"  
+        data-testid="LinkButton" display="inline-flex" 
+        font-family="inherit" font-weight="inherit" font-size="inherit" height="auto" >
+        <img src="images/alien.svg" width="22" height="22"> <strong>WriteUps | Walkthroughs [BLOG]</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="E">
+      <div class="contactE">
+        <a class="Econtent" href="https://www.youtube.com/channel/UCh8xSg5RUykC-tQr5I2lULQ" target="_blank"  
+        data-testid="LinkButton" display="inline-flex" 
+        font-family="inherit" font-weight="inherit" font-size="inherit" height="auto">
+        <img src="images/youtube.svg" width="22" height="22"><strong>YouTube Video Walkthroughs</strong>
+        </a>
+      </div>
+    </div>
+    <div id="footer">
+    <a href="mailto:thehive_x@protonmail.com"><img src="email.svg" width="24" height="24" alt="" ></a><a href="https://discord.com/users/598486528066584576"><img src="discord.svg" width="24" height="24" alt=""></a>
+  </div>
+  </div>
+    </div>
+  </div>
+</div>
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&family=Roboto+Condensed&family=Roboto:wght@300;400&display=swap');
+html, body{
+    background-color: #0a0f14;
+    background-image: url("images/641062.jpg");
+    background-size: cover !important;
+    font-family: 'Lucida Console', 'Courier New', monospace;
+    color: #43ADC7;
+    line-height: 1;
+  }
+
+  *{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    border: 0px;
+  }
+
+ #footer img{
+   background-color: #43ADC7;
+   opacity: .8;
+ }
+ #footer a{
+    padding-left: 10px;
+ }
+  #wrapper{
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    -moz-flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -moz-align-items: stretch;
+    -webkit-align-items: stretch;
+    -ms-align-items: stretch;
+    align-items: stretch;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    position: relative;
+  }
+#main{
+  padding-top: 160px;
+  padding-bottom: 130px;
+
+   height: 100vh;
+    display: flex;
+    flex: 1;
+    margin: 0 auto;
+    padding-left: 100px;
+    padding-right: 80px;
+    position: relative;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.content > div {
+    flex: 1 1 auto;
+}
+.content{
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 23px;
+  --aug-inlay-bg: #0a0f14;
+  --aug-inlay-opacity: .50;
+  --aug-border-all: 3px;
+  --aug-border-bg: #43ADC7;
+  --aug-border-opacity: .6;
+  --aug-t-extend1: 50%;
+  --aug-l-extend1: 50%;
+}
+.logo-profile{
+  margin: 0 auto;
+  display: block;
+}
+.logo-profile img{
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border-width: thin;
+  border-color:  #0a0f14;
+}
+.logo-profile p{
+  padding-top: 20px;
+  padding-bottom: 25px;
+  font-size: 2.2rem;
+  color: #43ADC7;
+  text-align: center;
+  opacity: .9;
+}
+
+  .logo-profile strong{
+    margin-left: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    margin-top: 30px;
+    text-align: center;
+    letter-spacing: .2em;
+    opacity: .9;
+  }
+  .contacts{
+    margin-top: -16px;
+    align-items: center;
+  }
+.contacts img{
+  margin-right: 5px;
+}
+.A, .B, .C, .D, .E
+{
+    position: relative;
+    flex: 1;
+}
+.contactA, .contactB, .contactC, .contactD, .contactE
+{
+    position: relative;
+    height: auto;
+    margin-bottom: 5px;
+    background-color: #43ADC7;
+    opacity: .7;
+}
+.contentA, .contentB, .contentC, .contentD, .Econtent
+{
+    border: medium none;
+    display: inline-flex;
+    -moz-box-align: center;
+    align-items: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    height: auto;
+    position: relative;
+    padding: 13px 17px;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Oxygen', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: .1em;
+    box-sizing: border-box;
+    text-decoration: none;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    white-space: normal;
+    color: #0a0f14;
+    opacity: .9;
+}
+hr {
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: -5px;
+  padding: 0;
+  border: 0;
+  opacity: .7;
+}
+#divider::before {
+  width: 100%;
+  border-top: solid 2px  #43ADC7;
+  height: 3px;
+}
+hr::before {
+  content: '';
+  display: inline-block;
+}
+
+
+
+ /* Extra small devices (phones, 400px and down) */
+ @media only screen and (max-width: 400px) {
+#main{
+  padding-top: 70px;
+  padding-bottom: 70px;
+  height: 100%;
+}
+.contacts{
+  margin-right: -50px;
+  margin-left: -50px;
+  -webkit-transform: translateX(-2px);
+  -moz-transform: translateX(-2px);
+  transform: translateX(-2px);
+  font-size: .8rem;
+}
+
+.contentA, .contentB, .contentC, .contentD, .Econtent{
+  padding: 3px 5px;
+  
+}
+.logo-profile strong{
+  margin-left: 10px;
+}
+ }
+
+ /* Small devices (portrait tablets and large phones, 400px and up to 600px) */
+ @media (min-width: 400px) and (max-width: 680px){
+  #main{
+    padding-bottom: 120px;
+    padding-top: 120px;
+      height: 100%;
+  }
+  .contentA, .contentB, .contentC, .contentD, .Econtent{
+  padding: 3px 5px;
+}
+.logo-profile strong{
+  margin-left: 10px;
+}
+.logo-profile p{
+  font-size: 2.1rem;
+
+}
+.contacts{
+  margin-right: -60px;
+  margin-left: -50px;
+  -webkit-transform: translateX(-2px);
+  -moz-transform: translateX(-2px);
+  transform: translateX(-2px);
+  font-size: .8rem;
+}
+
+  .contentA, .contentB, .contentC, .contentD, .Econtent{
+  padding: 4px 6px;
+}
+ }
+ /* chrome: 250-300 - firefox 260-300*/
+ /* Medium devices (landscape tablets, 768px and up) */
+ @media (min-width: 680px) and (max-width: 760px){
+  #main{
+    overflow: auto;
+    padding-top: 140px;
+    padding-bottom: 140px;
+    height: 100%;
+  }
+
+.contentA, .contentB, .contentC, .contentD, .Econtent{
+  padding: 4px 6px;
+}
+.logo-profile{
+  margin-bottom: -25px;
+}
+.logo-profile strong{
+  margin-left: 10px;
+}
+hr{
+  padding-top: 10px;
+}
+.logo-profile p{
+  font-size: 1.9rem;
+
+}
+.contacts{
+  margin: 0 auto;
+  font-size: .8rem;
+}
+
+ }
+ /* firefox 220 - 250*/ /* chrome 110 */
+ /* Medium devices (landscape tablets, 768px and up) */
+ @media (min-width: 760px) and (max-width: 870px){
+    #main{
+      padding-top: 200px;
+      padding-bottom: 200px;
+      height: 100%;
+    }
+.contentA, .contentB, .contentC, .contentD, .Econtent{
+  padding: 2px 4px;
+}
+.contacts{
+  margin-right: -26px;
+  -webkit-transform: translateX(-20px);
+  -moz-transform: translateX(-20px);
+  transform: translateX(-20px);
+  font-size: .9rem;
+}
+.logo-profile strong{
+  margin-left: 10px;
+}
+hr{
+  margin-top: 12px;
+}
+
+.logo-profile img{
+  width: 150px;
+  height: 150px;
+}
+ }
+ /* Large devices (laptops/desktops, 992px and up) */
+ @media (min-width: 870px) and (max-width: 1200px){
+ #main{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 110px;
+    padding-bottom: 90px;
+    height: 100vh;
+  }
+
+.contacts{
+  margin-left: 14%;
+  margin-right: 8%;
+  -webkit-transform: translateX(-20px);
+  -moz-transform: translateX(-20px);
+  transform: translateX(-20px);
+  font-size: .8rem;
+}
+  .contentA, .contentB, .contentC, .contentD, .Econtent{
+  padding: 3px 5px;
+  
+}
+.contactA, .contactB, .contactC, .contactD, .contactE{
+  margin-bottom: 5px;
+}
+.logo-profile p{
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+.logo-profile strong{
+  margin-left: 10px;
+}
+.logo-profile img{
+  padding-bottom: -20px;
+  width: 100px;
+  height: 100px;
+}
+
+@media (min-width: 1200px) and (max-width: 9000px){
+  #main{
+display: none;  }
+}
+ }
+</style>
+</body>
+</html>
