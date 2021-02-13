@@ -21,9 +21,12 @@ body{
   color:  rgb(173,26,114);
   opacity: .8;
   font-family: 'Press Start 2P', cursive;
+}
 
-
-
+script{
+  height: 40px;
+  text-align: center;
+  align-content: center;
 }
 .content{
     display: block;

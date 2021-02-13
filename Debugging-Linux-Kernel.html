@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/augmented-ui@2/augmented-ui.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>👾 Debugging the Linux Kernel with Qemu and GDB</title>
+</head>
+<body>
+    <div class="thehive">
+    <main class="center">
+        <h1>
+          <span class="glitch" data-text="thehype_">
+            <a href="index.html">thehive_</a>
+          </span>
+        </h1>
+      </main>
+    </div>
+<div  class="content" data-augmented-ui="tl-clip bl-clip r-clip-y tr-clip b-clip-x br-clip both">
+    <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Debugging the Linux Kernel with Qemu and GDB</title>
+    <style>
+        /* webkit printing magic: print all background colors */
+        html {
+            -webkit-print-color-adjust: exact;
+        }
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+        
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        @media only screen {
+            body {
+                margin: 2em auto;
+                max-width: 900px;
+                color: rgb(55, 53, 47);
+            }
+        }
+        
+        body {
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        
+        a,
+        a.visited {
+            color: inherit;
+            text-decoration: underline;
+        }
+        
+        .pdf-relative-link-path {
+            font-size: 80%;
+            color: #444;
+        }
+        
+        h1,
+        h2,
+        h3 {
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 0.75em;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 1.25rem;
+        }
+        
+        .source {
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 1.5em;
+            word-break: break-all;
+        }
+        
+        .callout {
+            border-radius: 3px;
+            padding: 1rem;
+        }
+        
+        figure {
+            margin: 1.25em 0;
+            page-break-inside: avoid;
+        }
+        
+        figcaption {
+            opacity: 0.5;
+            font-size: 85%;
+            margin-top: 0.5em;
+        }
+        
+        mark {
+            background-color: transparent;
+        }
+        
+        .indented {
+            padding-left: 1.5em;
+        }
+        
+        hr {
+            background: transparent;
+            display: block;
+            width: 100%;
+            height: 1px;
+            visibility: visible;
+            border: none;
+            border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        @media only print {
+            img {
+                max-height: 100vh;
+                object-fit: contain;
+            }
+        }
+        
+        @page {
+            margin: 1in;
+        }
+        
+        .collection-content {
+            font-size: 0.875rem;
+        }
+        
+        .column-list {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .column {
+            padding: 0 1em;
+        }
+        
+        .column:first-child {
+            padding-left: 0;
+        }
+        
+        .column:last-child {
+            padding-right: 0;
+        }
+        
+        .table_of_contents-item {
+            display: block;
+            font-size: 0.875rem;
+            line-height: 1.3;
+            padding: 0.125rem;
+        }
+        
+        .table_of_contents-indent-1 {
+            margin-left: 1.5rem;
+        }
+        
+        .table_of_contents-indent-2 {
+            margin-left: 3rem;
+        }
+        
+        .table_of_contents-indent-3 {
+            margin-left: 4.5rem;
+        }
+        
+        .table_of_contents-link {
+            text-decoration: none;
+            opacity: 0.7;
+            border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid rgba(55, 53, 47, 0.09);
+            border-collapse: collapse;
+        }
+        
+        table {
+            border-left: none;
+            border-right: none;
+        }
+        
+        th,
+        td {
+            font-weight: normal;
+            padding: 0.25em 0.5em;
+            line-height: 1.5;
+            min-height: 1.5em;
+            text-align: left;
+        }
+        
+        th {
+            color: rgba(55, 53, 47, 0.6);
+        }
+        
+        ol,
+        ul {
+            margin: 0;
+            margin-block-start: 0.6em;
+            margin-block-end: 0.6em;
+        }
+        
+        li > ol:first-child,
+        li > ul:first-child {
+            margin-block-start: 0.6em;
+        }
+        
+        ul > li {
+            list-style: disc;
+        }
+        
+        ul.to-do-list {
+            text-indent: -1.7em;
+        }
+        
+        ul.to-do-list > li {
+            list-style: none;
+        }
+        
+        .to-do-children-checked {
+            text-decoration: line-through;
+            opacity: 0.375;
+        }
+        
+        ul.toggle > li {
+            list-style: none;
+        }
+        
+        ul {
+            padding-inline-start: 1.7em;
+        }
+        
+        ul > li {
+            padding-left: 0.1em;
+        }
+        
+        ol {
+            padding-inline-start: 1.6em;
+        }
+        
+        ol > li {
+            padding-left: 0.2em;
+        }
+        
+        .mono ol {
+            padding-inline-start: 2em;
+        }
+        
+        .mono ol > li {
+            text-indent: -0.4em;
+        }
+        
+        .toggle {
+            padding-inline-start: 0em;
+            list-style-type: none;
+        }
+        
+        /* Indent toggle children */
+        .toggle > li > details {
+            padding-left: 1.7em;
+        }
+        
+        .toggle > li > details > summary {
+            margin-left: -1.1em;
+        }
+        
+        .selected-value {
+            display: inline-block;
+            padding: 0 0.5em;
+            background: rgba(206, 205, 202, 0.5);
+            border-radius: 3px;
+            margin-right: 0.5em;
+            margin-top: 0.3em;
+            margin-bottom: 0.3em;
+            white-space: nowrap;
+        }
+        
+        .collection-title {
+            display: inline-block;
+            margin-right: 1em;
+        }
+        
+        time {
+            opacity: 0.5;
+        }
+        
+        .icon {
+            display: inline-block;
+            max-width: 1.2em;
+            max-height: 1.2em;
+            text-decoration: none;
+            vertical-align: text-bottom;
+            margin-right: 0.5em;
+        }
+        
+        img.icon {
+            border-radius: 3px;
+        }
+        
+        .user-icon {
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 100%;
+            margin-right: 0.5rem;
+        }
+        
+        .user-icon-inner {
+            font-size: 0.8em;
+        }
+        
+        .text-icon {
+            border: 1px solid #000;
+            text-align: center;
+        }
+        
+        .page-cover-image {
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            height: 30vh;
+        }
+        
+        .page-header-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header-icon-with-cover {
+            margin-top: -0.72em;
+            margin-left: 0.07em;
+        }
+        
+        .page-header-icon img {
+            border-radius: 3px;
+        }
+        
+        .link-to-page {
+            margin: 1em 0;
+            padding: 0;
+            border: none;
+            font-weight: 500;
+        }
+        
+        p > .user {
+            opacity: 0.5;
+        }
+        
+        td > .user,
+        td > time {
+            white-space: nowrap;
+        }
+        
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            margin-right: 0.6em;
+            vertical-align: middle;
+        }
+        
+        p {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        .image {
+            border: none;
+            margin: 1.5em 0;
+            padding: 0;
+            border-radius: 0;
+            text-align: center;
+        }
+        
+        .code,
+        code {
+            background: rgba(135, 131, 120, 0.15);
+            border-radius: 3px;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-size: 85%;
+            tab-size: 2;
+        }
+        
+        code {
+            color: #eb5757;
+        }
+        
+        .code {
+            padding: 1.5em 1em;
+        }
+        
+        .code-wrap {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        
+        .code > code {
+            background: none;
+            padding: 0;
+            font-size: 100%;
+            color: inherit;
+        }
+        
+        blockquote {
+            font-size: 1.25em;
+            margin: 1em 0;
+            padding-left: 1em;
+            border-left: 3px solid rgb(55, 53, 47);
+        }
+        
+        .bookmark {
+            text-decoration: none;
+            max-height: 8em;
+            padding: 0;
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+        }
+        
+        .bookmark-title {
+            font-size: 0.85em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 1.75em;
+            white-space: nowrap;
+        }
+        
+        .bookmark-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .bookmark-info {
+            flex: 4 1 180px;
+            padding: 12px 14px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .bookmark-image {
+            width: 33%;
+            flex: 1 1 180px;
+            display: block;
+            position: relative;
+            object-fit: cover;
+            border-radius: 1px;
+        }
+        
+        .bookmark-description {
+            color: rgba(55, 53, 47, 0.6);
+            font-size: 0.75em;
+            overflow: hidden;
+            max-height: 4.5em;
+            word-break: break-word;
+        }
+        
+        .bookmark-href {
+            font-size: 0.75em;
+            margin-top: 0.25em;
+        }
+        
+        .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+        .code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+        .serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+        .mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+        .pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+        
+        .pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+        
+        .pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+        
+        .pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+        
+
+        .highlight-gray {
+            color: rgb(155,154,151);
+        }
+        .highlight-brown {
+            color: rgb(100,71,58);
+        }
+        .highlight-orange {
+            color: rgb(217,115,13);
+        }
+        .highlight-yellow {
+            color: rgb(223,171,1);
+        }
+        .highlight-teal {
+            color: rgb(15,123,108);
+        }
+        .highlight-blue {
+            color: rgb(11,110,153);
+        }
+        .highlight-purple {
+            color: rgb(105,64,165);
+        }
+        .highlight-pink {
+            color: rgb(173,26,114);
+        }
+        .highlight-red {
+            color: rgb(224,62,62);
+        }
+        .highlight-gray_background {
+            background: rgb(235,236,237);
+        }
+        .highlight-brown_background {
+            background: rgb(233,229,227);
+        }
+        .highlight-orange_background {
+            background: rgb(250,235,221);
+        }
+        .highlight-yellow_background {
+            background: rgb(251,243,219);
+        }
+        .highlight-teal_background {
+            background: rgb(221,237,234);
+        }
+        .highlight-blue_background {
+            background: rgb(221,235,241);
+        }
+        .highlight-purple_background {
+            background: rgb(234,228,242);
+        }
+        .highlight-pink_background {
+            background: rgb(244,223,235);
+        }
+        .highlight-red_background {
+            background: rgb(251,228,228);
+        }
+        .block-color-default {
+            color: inherit;
+            fill: inherit;
+        }
+        .block-color-gray {
+            color: rgba(55, 53, 47, 0.6);
+            fill: rgba(55, 53, 47, 0.6);
+        }
+        .block-color-brown {
+            color: rgb(100,71,58);
+            fill: rgb(100,71,58);
+        }
+        .block-color-orange {
+            color: rgb(217,115,13);
+            fill: rgb(217,115,13);
+        }
+        .block-color-yellow {
+            color: rgb(223,171,1);
+            fill: rgb(223,171,1);
+        }
+        .block-color-teal {
+            color: rgb(15,123,108);
+            fill: rgb(15,123,108);
+        }
+        .block-color-blue {
+            color: rgb(11,110,153);
+            fill: rgb(11,110,153);
+        }
+        .block-color-purple {
+            color: rgb(105,64,165);
+            fill: rgb(105,64,165);
+        }
+        .block-color-pink {
+            color: rgb(173,26,114);
+            fill: rgb(173,26,114);
+        }
+        .block-color-red {
+            color: rgb(224,62,62);
+            fill: rgb(224,62,62);
+        }
+        .block-color-gray_background {
+            background: rgb(235,236,237);
+        }
+        .block-color-brown_background {
+            background: rgb(233,229,227);
+        }
+        .block-color-orange_background {
+            background: rgb(250,235,221);
+        }
+        .block-color-yellow_background {
+            background: rgb(251,243,219);
+        }
+        .block-color-teal_background {
+            background: rgb(221,237,234);
+        }
+        .block-color-blue_background {
+            background: rgb(221,235,241);
+        }
+        .block-color-purple_background {
+            background: rgb(234,228,242);
+        }
+        .block-color-pink_background {
+            background: rgb(244,223,235);
+        }
+        .block-color-red_background {
+            background: rgb(251,228,228);
+        }
+        .select-value-color-default { background-color: rgba(206,205,202,0.5); }
+        .select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+        .select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+        .select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+        .select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+        .select-value-color-green { background-color: rgba(0,135,107,0.2); }
+        .select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+        .select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+        .select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+        .select-value-color-red { background-color: rgba(255,0,26,0.2); }
+        
+        .checkbox {
+            display: inline-flex;
+            vertical-align: text-bottom;
+            width: 16;
+            height: 16;
+            background-size: 16px;
+            margin-left: 2px;
+            margin-right: 5px;
+        }
+        
+        .checkbox-on {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+        }
+        
+        .checkbox-off {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+        }
+            
+</style></head><body><article id="9c960be0-ab56-4253-9d5d-a2a0eff50121" class="page sans"><header style="margin-top: -30px;"><h1 class="highlight-gray" style="text-align: center;">Debugging the Linux Kernel with Qemu and GDB.</h1><hr id="5fec88ea-d52a-49e9-a8df-2e6a166c4f63"/>        </header><div class="page-body"><p id="399c6e4d-8b74-47eb-8394-6a7580ed0c28" class="">This tutorial will walk you through the steps needed to start debugging the Linux Kernel with a setup using <code>qemu</code> and <code>gdb</code>. If you want to know more about <code>qemu</code>, check the <strong><a href="https://github.com/qemu/qemu">Official Repo</a></strong><strong>, </strong>definitely one of the best open source projects out there.<strong> </strong></p><p id="ac8aae84-32b7-43a5-9045-8d7fa41bdea3" class="">This Setup gives you the capability to remotely debug a <code>qemu</code> instance emulating The Linux Kernel, you can also debug Kernel Modules with this setup <mark class="highlight-gray"><em>but we will not get into it in this tutorial</em></mark><em>.</em></p><p id="107fa956-7205-4b8e-9b15-1d9b7581c560" class="">
+        </p><p id="82d539e1-6fbb-416e-bcbc-a2ee934f9ab9" class=""><strong>Video Tutorial:</strong></p><iframe width="658" height="367" src="https://www.youtube.com/embed/2VcA5Wj7IvU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p id="b1d0b649-a4b8-414c-9ff8-5cc68fc6fc47" class=""></p><hr id="aa3dd298-cf4b-4ed5-903f-156a1109c234"/><h1 id="0586e89f-057d-4b11-85ae-06bb388ffe5d" class=""><mark class="highlight-red">1→  Build your own Custom Kernel:</mark></h1><p id="1a5fea06-bed5-4568-8083-74f867edee87" class="">
+        </p><p id="d1b1978b-e90d-4617-97c4-7b0b52e59bf3" class="">To start we need to build our own kernel to have the executable binary image <code>bzImage</code> so we can emulate it with <code>qemu</code> , and the Kernel File Image <code>vmlinux</code> with all debug info we need, to use it with <code>gdb</code> to trace through the Kernel Code. Both of these files are obtained when we compile the Linux Kernel from source.</p><p id="d08472c7-5939-4131-b31b-b760c0a760a3" class="">Building the Kernel from scratch takes time <strong>AND</strong> space, so if you want to boot into your newly compiled kernel, when setting up your <strong>VM</strong> make sure to manually partition your disk and give <code>/boot</code> partition not less than <strong>10GB</strong> to be able to boot the newly build kernel. <mark class="highlight-pink"><strong>THIS IS VERY IMPORTANT!</strong></mark></p><p id="4db5a50c-87e4-403b-bffc-c7418bfe3c8b" class=""><br></p><p id="dbb34f19-085f-4d6b-a373-6ac98546c5e1" class="">Detailed Steps for Building the Linux Kernel can be found in <a href="https://kernelnewbies.org/KernelBuild"><strong>kernelnewbies.org</strong></a></p><h3 id="a88b5aa4-c5ff-4280-84d3-6c690d860184" class="">Compilation Step:</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="873daddb-05a4-42c5-87d4-49211b33c51b" class="code"><code><span class="token comment"># after cloning the kernel tree from git, cd into &lt;kernel-dir> </span>
+        <span class="token comment"># copy your distro's kernel config file into the cloned &lt;kernel-dir></span>
+        
+        <span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>kernel-dir<span class="token operator">></span>
+        <span class="token function">cp</span> /boot/config-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -r<span class="token variable">`</span></span> <span class="token operator">&lt;</span>kernel-dir<span class="token operator">></span>/config
+        
+        
+        <span class="token comment"># editing the custom kernel config</span>
+        <span class="token comment"># you can choose your same kernel config you have by executing</span>
+        <span class="token function">make</span> olddefconfig      <span class="token comment"># enough for what we need</span>
+        
+        <span class="token comment"># or you can tinker with the new config, enable different built-in modules ..etc</span>
+        <span class="token function">make</span> menuconfig</code></pre><p id="6cc208a5-8567-4e72-8eea-13ee7bb47099" class="">
+        </p><p id="c850ffbc-5cc4-4103-8095-3b4a312d821b" class=""><strong><mark class="highlight-teal">// Use navigation to select drivers you want to build, and hit save.</mark></strong></p><figure id="99c55087-9369-457b-9d79-b98170789854" class="image"><a href="images/Screenshot_from_2021-02-13_03-51-25.png"><img style="width:1068px;" src="images/Screenshot_from_2021-02-13_03-51-25.png"/></a></figure><p id="b80b4172-533c-4248-8562-06ac3263bf19" class="">
+        </p><p id="3d54d368-1c1b-4685-9d62-cd08aa33a7b4" class="">We can edit the config file itself using a text editor and enable enough kernel config for debugging, I will not debug Kernel Modules in this tutorial, so as I said I would not bother build them.</p><p id="5047bcda-8eb3-494f-bc4d-98d8a339f5e6" class="">For what we need, make sure to enable these configs:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="b14bbeda-09dd-4631-acf4-d5d256bfdfce" class="code"><code>CONFIG_DEBUG_INFO=y
+        CONFIG_GDB_SCRIPS=y
+        CONFIG_DBUG_KERNEL=y</code></pre><p id="355f0299-fe99-4933-b3be-eeaaed8f5987" class="">
+        </p><p id="f00357ba-56dd-484d-9dcb-ac7b9b28433f" class="">There are other compiler configs to be enabled, but that is enough for our purposes.</p><figure id="d5706f75-e4d5-4bf7-9a81-c364330f6686" class="image"><a href="images/Screenshot_from_2021-02-13_04-01-16.png"><img style="width:512px" src="images/Screenshot_from_2021-02-13_04-01-16.png"/></a></figure><p id="6af73400-7787-47ad-a809-f5ff33cd1f87" class=""><br></p><p id="b62da5f5-aedb-4986-960e-e651304a9377" class="">Save the changes and build the Kernel:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a109fb25-ddd5-43a0-a2be-0c622b032a0b" class="code"><code><span class="token function">sudo</span> <span class="token function">make</span> -j3
+        <span class="token function">sudo</span> <span class="token function">make</span> -j3 modules_install 
+        
+        <span class="token comment"># if you want concurrency, make sure to use less cores than you have</span>
+        <span class="token comment"># specially if you're running a VM</span>
+        <span class="token variable"><span class="token variable">`</span>nproc<span class="token variable">`</span></span>  <span class="token comment"># to know how many cores you have  </span></code></pre><p id="d52006c3-7a2e-4e8e-9c10-41908e2d3d91" class=""><br></p><p id="789d2210-540a-4582-af1e-7885f03a8da8" class="">After finishing, navigate to <code>&lt;kernel-dir&gt;/arch/x86/boot</code> you&#x27;ll find the compiled kernel executable image <code>bzImage</code> this is what we need <code>qemu</code> to boot, it is a <strong>BIG</strong> image.</p><p id="395f9490-f32d-4313-976a-dca690d5db64" class="">Now we have our compiled kernel, we can now restart our system, boot in the new kernel and hop into the next step.</p><p id="5883e46c-732a-4ef1-9e67-7780b337c151" class="">
+        <br></p><h3 id="c688bb8d-3409-4c41-9852-c480f47beed8" class="">Making a RAM disk image:</h3><p id="60a4e49f-b789-4317-900d-7a1e0f5785b8" class="">Now before generating a <strong>RAM disk image</strong>, we will stop a second to understand who the Linux system boots, first we have the <code>bzImage</code> → the kernel as an executable binary, yet in order for the kernel to boot it needs an <strong>initial root filesystem</strong> <code>initramfs</code> to get stuff going and setup correctly initial binaries for the real system to work, like the <code>init</code> process  aka <mark class="highlight-teal"><em>the parent of all processes</em></mark><em> </em>, and a bunch of other important binaries in <code>/sbin</code> , when the <code>initramfs</code> is done executing crucial binaries as root, it then looks for the <strong>REAL</strong> root filesystem to mount and pivot the root to it, free itself from memory, and the full system boots. but if it did not find the <strong>REAL</strong> root filesystem, it will boot the kernel and throw you in a recovery shell to boot it manually, or figure out what went wrong.</p><p id="971852db-f0ad-4fe6-a625-bd5247798efc" class="">Have you experienced this lately?? 😉</p><p id="557e7610-4546-4dea-909a-68a4ef7b8fff" class=""><br></p><p id="2bc3d00b-6a8e-4a16-844e-c7252a4fcdd4" class="">So we have three components for booting a Linux system:</p><p id="da1b2f99-6ce6-4d22-a389-9a824fe91612" class=""><strong>→ Kernel Image:</strong> <code>bzImage </code>OR <code>vmlinuz</code> </p><p id="6ecb9efd-1748-451c-a311-9f1ff86206cb" class=""><strong>→ RAM disk: </strong><code>initrd</code></p><p id="b81cd7b1-31ac-4c44-b517-9b7f897b6949" class=""><strong>→ Root file system: </strong><code>/dev/sdY</code></p><p id="bc6f04a3-6680-4b38-8d3a-c4309f6c8f84" class=""><br></p><p id="3ea47b42-07f3-48fb-87ff-908911d97351" class="">but since we are not interested into making a full blown Linux system, we can stop at <code>initramfs</code> being the root filesystem, and not provide a root filesystem/device to <code>qemu</code> . as we will see everything will work fine with just an <code>initramfs</code> shell.</p><p id="e4f2a014-1c80-486a-8811-a7b1e6709dd7" class=""><br></p><p id="77c38f7a-9899-4e05-9a3c-ee60033baed1" class="">Making a <strong>RAM</strong> disk depends on your distro, since I&#x27;m running Debian for this setup, this can be done by:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="5cbbe25b-67ac-479a-8722-76b2a7aacdc0" class="code"><code>mkinitramfs -o ramdisk.img
+        
+        <span class="token function">file</span> ramdisk.img
+        <span class="token comment"># ramdisk.img: gzip compressed data ... original size 26352128</span></code></pre><p id="5b78464d-469e-4303-b7c1-e6e05e5b648a" class="">Now we have what we need, Let&#x27;s move on to compile <code>qemu</code></p><hr id="005b6321-3ba0-40c7-b8c6-9efd3621b946"/><h1 id="47a07fba-1d08-4c58-8419-56547b22d102" class=""><mark class="highlight-red">2→ Building </mark><mark class="highlight-red"><code>qemu</code></mark><mark class="highlight-red"> from source:</mark></h1><p id="d49e01f5-e876-4dd7-aad8-1992cd90ac64" class="">
+        </p><p id="9c6e3717-0a20-4eae-b53c-f4f091c3bc56" class="">I like building big software from source, because I can choose a minimal setup for just what I need, <code>qemu</code> is an emulation software and has a dozen of target systems to emulate, we don&#x27;t need all that, we are just interested in a <code>x86_64 bit</code> Linux system.</p><p id="75941fa4-cb6c-47a9-8627-6ce9972d44bf" class=""><br></p><p id="5867ecca-b976-45a5-af68-8fafed29179e" class="">Detailed steps for building <code>qemu</code> can be found <a href="https://en.wikibooks.org/wiki/QEMU/Installing_QEMU"><strong>here</strong></a><strong> </strong>.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="7a84ffc1-fb06-4151-a2b6-f67a02b61d46" class="code"><code><span class="token comment"># after cloning the repo, cd into qemu</span>
+        <span class="token function">git</span> clone git://git.qemu-project.org/qemu.git
+        <span class="token builtin class-name">cd</span> qemu
+        <span class="token function">mkdir</span> build <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> build
+        
+        <span class="token comment"># configure target system we need / and other options</span>
+        <span class="token punctuation">..</span>/configure --target-list<span class="token operator">=</span>x86_64-softmmu --enable-debug
+        
+        <span class="token comment"># build</span>
+        <span class="token function">make</span> -j3 </code></pre><p id="94df0039-e44b-4c1f-920a-0df8299f812a" class="">Although <code>qemu</code> has tons of options to enable, like enabling <strong>usb passthrough</strong> by using compiler options like <code>-libusb</code> and configuring the graphic and screens ...etc, <strong> </strong>we <strong>ONLY</strong> want to emulate and boot the Linux Kernel. So .. practicing <strong>Minimalism. </strong>🤟🏻</p><p id="9f4fbb76-a6f9-4af5-aa97-a45307cfed84" class=""><br></p><p id="21485886-b75b-469f-b4c7-5a00da27a868" class="">Now we&#x27;ve successfully built <code>qemu</code> and can use it by executing <code>qemu-system-x86_64</code> .</p><hr id="c7d56172-1b0c-49d0-92d9-4021198f96d6"/><h1 id="9c5958a7-70f3-4a38-816f-a623c7a68bb4" class=""><mark class="highlight-red">3→ Setting up the Environment:</mark></h1><p id="8a83ffc0-f5e9-4f2d-8512-48a6125d6375" class="">
+        </p><h3 id="eda1a768-ee01-431e-b879-ea6eecb89905" class="">Booting the Linux Kernel in <code>qemu</code>:</h3><p id="1a21054b-ac68-457c-ab16-61bbc82f4298" class="">As a starter let&#x27;s test booting the kernel:</p><p id="4391e2a1-a1b6-47b0-bf0a-d3a480bfe12f" class="">for <code>qemu</code> to boot the Linux kernel it needs two parameters, <code>-kernel &lt;path-to-kernel-bzImage&gt;</code> and <code>-initrd &lt;path-to-ramdik.img&gt;</code> , <code>-m 512</code> for memory and that is <strong>VERY</strong> enough.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0a5f380f-7a9a-4273-8507-9059fdc45017" class="code"><code>qemu-system-x86_64 -kernel <span class="token operator">&lt;</span>kernel-dir<span class="token operator">></span>/arch/x86_64/boot/bzImage <span class="token punctuation">\</span>
+        -initrd <span class="token operator">&lt;</span>path-to<span class="token operator">></span>/ramdisk.img <span class="token punctuation">\</span>
+        - m <span class="token number">512</span></code></pre><figure id="22ad2f7d-8ad8-44ca-a8f1-45073b9c054b" class="image"><a href="images/Screenshot_from_2021-02-13_05-02-48.png"><img style="width:926px" src="images/Screenshot_from_2021-02-13_05-02-48.png"/></a></figure><p id="df89991e-da31-4a09-93e8-ab5c92fa00bf" class="">And as we see, we&#x27;ve been thrown to an <code>initramfs</code> recovery shell with very limited functionality.</p><p id="a0112762-84e5-4a47-a714-80bc5df799aa" class="">
+        </p><p id="c19a6942-4cb9-4c57-a342-b61b2146f14b" class="">Now let&#x27;s connect the <code>qemu</code> instance with <code>gdb</code> for remote debugging.</p><p id="8964fe98-e4b6-4ed4-9c34-2dfa9c093889" class="">Since <code>gdb</code> is adopted everywhere, almost all important projects/software will have a <code>GDBStub</code> for debugging, in our case this task is done simply by adding <code>-s</code> to the <code>qemu</code> script.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="4de6be2b-668a-45ee-811c-ad6c5f776eed" class="code"><code>qemu-system-x86_64 -kernel <span class="token operator">&lt;</span>kernel-dir<span class="token operator">></span>/arch/x86_64/boot/bzImage <span class="token punctuation">\</span>
+        -initrd <span class="token operator">&lt;</span>path-to<span class="token operator">></span>/ramdisk.img <span class="token punctuation">\</span>
+        - m <span class="token number">512</span> -s</code></pre><p id="f4f61c78-8759-4bcc-9fad-3b462aec4506" class=""></p><figure id="755604e2-956c-4ef3-ac7a-60d5fd82dd95" class="image"><a href="images/Screenshot_from_2021-02-13_05-12-25.png"><img style="width:923px" src="images/Screenshot_from_2021-02-13_05-12-25.png"/></a></figure><p id="787b4ab6-a879-4e77-9dee-8c336146cff6" class="">That might look like as if we did nothing, because the kernel booted exactly the same as before. but if we connected with <code>gdb</code> to port <code>1234</code> as <code>qemu</code> uses this port for <code>gdb</code> remote debugging.</p><p id="d517dad4-4494-4c82-8c38-b1d26ac314d9" class=""> </p><figure id="358a719d-e4d6-4a98-ae61-20530376acb2" class="image"><a href="images/Screenshot_from_2021-02-13_05-17-38.png"><img style="width:751px" src="images/Screenshot_from_2021-02-13_05-17-38.png"/></a></figure><p id="27ac2fdf-d551-453d-9fdb-22bbecf35a85" class="">We see that <code>gdb</code> connected successfully, but we couldn&#x27;t catch anything. and if we closed the <code>qemu</code> instance, <code>gdb</code> will complain about a remote communication error.</p><p id="fd62ba59-a2dd-43aa-b06d-4a4442e87330" class=""><br></p><figure id="39417d4d-d0ce-412d-9640-aae27baf66fb" class="image"><a href="images/Screenshot_from_2021-02-13_05-22-56.png"><img style="width:810px" src="images/Screenshot_from_2021-02-13_05-22-56.png"/></a></figure><p id="de551130-22b2-4fbc-bef5-36b07fc79b39" class=""><br></p><p id="03c37c51-1a02-43a7-b768-4e143bc8b21f" class="">so we need to tell <code>qemu</code> to <strong>STOP</strong> booting until connected with <code>gdb</code> , simple as in a <code>-S</code> option to add to the <code>qemu</code> script.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a50b615e-df8c-47b3-94bf-49e4358ca2f3" class="code"><code>qemu-system-x86_64 -kernel <span class="token operator">&lt;</span>kernel-dir<span class="token operator">></span>/arch/x86_64/boot/bzImage <span class="token punctuation">\</span>
+        -initrd <span class="token operator">&lt;</span>path-to<span class="token operator">></span>/ramdisk.img <span class="token punctuation">\</span>
+        - m <span class="token number">512</span> -s -S</code></pre><p id="eff12c92-2863-441b-a673-ae93f5956465" class=""></p><figure id="af6aa263-0684-4d99-b31a-4c6f4c306bea" class="image"><a href="images/Screenshot_from_2021-02-13_05-24-19.png"><img style="width:907px" src="images/Screenshot_from_2021-02-13_05-24-19.png"/></a></figure><p id="979cb0dc-2514-43cd-9d4b-d03708eb478f" class="">Now we have the kernel waiting for us to connect remotely over port <code>1234</code> with <code>gdb</code> .</p><p id="aeb18ad1-206d-472e-8a46-bb848e2b3d97" class=""><br></p><p id="b4ef1ad5-04db-44de-a3e8-1d737764e8d1" class="">Let&#x27;s make it cooler and redirect the <code>qemu</code> output to the main console window with a serial port terminal by adding a <code>-nographic</code> option to not view the <code>qemu</code> window and <code>-append &quot;console=ttyS0&quot;</code> to the <code>qemu</code> script, so we can scroll though the kernel log.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="efac0c50-3a47-4f5d-a5bf-95684f868cc6" class="code"><code>qemu-system-x86_64 -kernel <span class="token operator">&lt;</span>kernel-dir<span class="token operator">></span>/arch/x86_64/boot/bzImage <span class="token punctuation">\</span>
+        -initrd <span class="token operator">&lt;</span>path-to<span class="token operator">></span>/ramdisk.img <span class="token punctuation">\</span>
+        -m <span class="token number">512</span> -s -S <span class="token punctuation">\</span> 
+        -append <span class="token string">"console=ttyS0"</span></code></pre><figure id="b3e58162-84a8-488b-957b-f18b19efa7a5" class="image"><a href="images/Screenshot_from_2021-02-13_05-43-46.png"><img style="width:922px" src="images/Screenshot_from_2021-02-13_05-43-46.png"/></a></figure><p id="fe8e066b-2248-426f-92ec-8335341ef773" class="">
+        </p><h3 id="45fb8452-7e82-4c57-bf01-e18d0707b49a" class="">Connecting <code>qemu</code> kernel instance remotely with <code>gdb</code>:</h3><p id="d2ef6f19-f77d-4f2c-a1ae-75316a2e5114" class="">To be able to debug the Linux Kernel with <code>gdb</code> we need the Linux Kernel symbols to be able to trace through the kernel Code, Lucky for us since we&#x27;ve compiled the Linux Kernel ourselves, if we navigate to the compiled <code>&lt;kernel-dir&gt;</code> , we&#x27;d find a <code>vmlinux</code> which is yet another Linux Kernel Image File, but this file is statically linked, containing all <code>debug_info</code> and The Linux Kernel Symbols we need, So this is the Linux Kernel File we need to attach to <code>gdb</code> to load the Kernel symbols.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="7e0f7f98-a0f7-48e6-823a-a445ea16eddf" class="code"><code>gdb <span class="token operator">&lt;</span>kernel-dir<span class="token operator">></span>/vmlinux</code></pre><figure id="b9b7e9b4-7110-4cf8-a404-9dd06567fbd6" class="image"><a href="images/Screenshot_from_2021-02-13_05-32-10.png"><img style="width:878px" src="images/Screenshot_from_2021-02-13_05-32-10.png"/></a></figure><p id="0db5e751-867c-4af7-b4db-bbe6839e7b3d" class=""><br></p><p id="673f55a3-f9c2-4b33-8898-2032d4b4098d" class="">Now that the Linux Kernel symbols are loaded in <code>gdb</code>, and we have the Kernel <code>qemu</code> instance waiting for the <code>gdb</code> connection, we can connect with <code>target remote :1234</code> .</p><figure id="91ad3603-45c1-4229-bee5-db8644041221" class="image"><a href="images/Screenshot_from_2021-02-13_05-36-50.png"><img style="width:859px" src="images/Screenshot_from_2021-02-13_05-36-50.png"/></a></figure><p id="48e7f366-62d7-4a41-9713-5d4089f97830" class="">Now we are connected to the <code>qemu</code> instance via its <code>GDBStub</code> and can walk through the <code>main.c</code> code and start exploring the Linux Kernel.</p><hr id="225783a2-5ceb-40a7-be07-677e924023e5"/><h1 id="d242b3a9-d313-457e-a55c-7a7b585d81c9" class=""><mark class="highlight-red">4→ Debugging the Linux Kernel:</mark></h1><p id="0b05d8f4-557a-4309-a8a1-5dcc38c9f41b" class="">
+        </p><p id="becdeb5a-5c20-4f6c-8edb-c2bedaf53f35" class="">Let&#x27;s start by setting up a hardware breakpoint at <code>start_kernel()</code> and hit continue to remotely control booting the kernel.</p><figure id="fb0db6c7-724e-40a6-87f1-ccdb8e6e207f" class="image"><a href="images/Screenshot_from_2021-02-13_05-48-45.png"><img style="width:856px" src="images/Screenshot_from_2021-02-13_05-48-45.png"/></a></figure><p id="263cd115-f1b2-4dd8-9958-82a585015dfb" class="">Now that doesn&#x27;t seem like we control booting the kernel at all, because the kernel actually booted _ <em>we entered the </em><code><em>initramfs</em></code><em> recovery shell</em> _ and our breakpoint was not hit.</p><p id="5ba0ce5f-371d-47d4-8138-833a17008f1d" class=""><br></p><p id="dbe4d148-cbdc-4fb9-a978-c8950903c06f" class="">That&#x27;s because we need to disable the kernel <strong>ASLR</strong> by adding <code>nokaslr</code> to the <code>qemu</code> script.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="10c6a26d-27a3-4804-bc9d-42f58ae1fee0" class="code"><code>qemu-system-x86_64 -kernel <span class="token operator">&lt;</span>kernel-dir<span class="token operator">></span>/arch/x86_64/boot/bzImage <span class="token punctuation">\</span>
+        -initrd <span class="token operator">&lt;</span>path-to<span class="token operator">></span>/ramdisk.img <span class="token punctuation">\</span>
+        -m <span class="token number">512</span> -s -S <span class="token punctuation">\</span> 
+        -append <span class="token string">"console=ttyS0 nokaslr"</span></code></pre><figure id="6ed7e0a2-810a-4c71-a1fa-e4525182c8dc" class="image"><a href="images/Screenshot_from_2021-02-13_05-54-05.png"><img style="width:837px" src="images/Screenshot_from_2021-02-13_05-54-05.png"/></a></figure><p id="3da335d0-36cd-4c80-938b-936dd8c72a1a" class="">
+        </p><p id="0c43cb14-5079-415e-afb3-a37803cdf3d0" class=""><strong>VOILA!</strong> now we actually control booting the kernel, from there you&#x27;re free to walk through the code, learn the Linux Kernel by debugging, view and list the disassembly as well as the source code.</p><figure id="5942e2af-0ff6-4deb-a539-3308990498ef" class="image"><a href="images/Screenshot_from_2021-02-13_05-58-46.png"><img style="width:1001px" src="images/Screenshot_from_2021-02-13_05-58-46.png"/></a></figure><p id="58233929-fb80-40b7-bb98-abea9791ebc8" class=""</p><p id="fa63a1c8-627f-4e41-ad33-1a526d0db775" class=""><mark class="highlight-teal">// Compiling the Linux Kernel might be a tough job, yet it comes with its pros as there is a directory in your </mark><mark class="highlight-red"><code>&lt;kernel-dir&gt;</code></mark><mark class="highlight-teal"> that has tons of helper scripts including </mark><mark class="highlight-red"><code>gdb</code></mark><mark class="highlight-teal"> scripts you can add to your </mark><mark class="highlight-red"><code>.gdbinit</code></mark><mark class="highlight-teal"> that&#x27;s very much useful for debugging Kernel Modules.</mark></p><p id="df777248-2ebd-4794-af39-3cad4539fa50" class="">you can view them in <code>gdb</code> after adding the path to the script in <code>.gdbinit</code> buy typing <code>lx-</code> and hitting <strong>TAB </strong>.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="5510f4a2-19b0-4354-abbe-5fc76fcf9fba" class="code"><code><span class="token comment"># add path to the linux kernel gdb script for safe auto loading </span>
+         
+        <span class="token builtin class-name">echo</span> <span class="token string">"add-auto-load-safe-path &lt;kernel-dir>/vmlinux-gdb.py"</span> <span class="token operator">>></span> ~/.gdbinit</code></pre><figure id="6532cc6f-ea2c-46ee-b650-867caa1f8be7" class="image"><a href="images/Screenshot_from_2021-02-13_06-02-28.png"><img style="width:866px" src="images/Screenshot_from_2021-02-13_06-02-28.png"/></a></figure><p id="b7070706-f3b9-4d99-b5fd-7871249d54a4" class=""></p></p><p id="849186a3-8e21-4aec-80a8-350a370c3271" class="">And that&#x27;s debugging the Linux Kernel with <code>gdb</code> and <code>qemu</code> for you!, I hope you had fun going this far! If you found this setup interesting, maybe you can try out debugging the Linux Kernel with <code>virtualbox</code> and the <code>GDBStub</code> !!</p><p id="2c9df56b-aeae-46c3-a48c-1ac1778fed23" class="">
+        </p><hr id="c6a3e03d-ca55-4c6d-8f6e-eb9b9c68e2df"/><p id="2e29d90b-2278-4bce-9216-a4ba57ed3596" class="" style="text-align: center;"><mark class="highlight-gray" ><strong>:: Good Job and Later with another hack!! 👾👾 </strong></mark></p><p id="4443afda-7229-4b36-a9f9-10cc1a21b5ed" class="">
+        </p></div></article></body></html>
+</div></body></html>
